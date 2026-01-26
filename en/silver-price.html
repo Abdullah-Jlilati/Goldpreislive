@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Silver Price Live - Ounce, Kilo, Gram | Gold Price Live Europe</title>
+  <meta name="description" content="Live Silver Price per Ounce, Kilo, and Gram (999, 925 Sterling, 800). Real-time spot rates in EUR & USD.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🥈</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+  <style>
+    .silver-theme { --color-gold: #C0C0C0; --color-gold-dim: #E0E0E0; }
+    .price-usd-row { margin-top: 5px; font-size: 0.9rem; color: var(--text-muted); display: flex; align-items: center; gap: 5px; }
+    .usd-value { color: var(--text-secondary); font-weight: 600; font-family: var(--font-mono); }
+    
+    .karat-grid-boxes { 
+        display: grid; 
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); 
+        gap: 20px; 
+    }
+    .karat-box {
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        padding: 1.5rem;
+        text-align: center;
+        transition: transform 0.2s, border-color 0.2s;
+    }
+    .karat-box.highlight { border-color: var(--color-gold); background: rgba(192, 192, 192, 0.1); }
+    .karat-box:hover { transform: translateY(-3px); border-color: var(--color-gold); box-shadow: var(--shadow-md); }
+    .k-label { font-size: 1.5rem; font-weight: 800; color: var(--color-gold); margin-bottom: 0.25rem; }
+    .k-purity { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.05em; }
+    .k-price { font-size: 1.25rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.25rem; }
+    .k-price-usd { font-size: 0.9rem; color: var(--text-secondary); }
+
+    .comparison-table { width: 100%; border-collapse: collapse; background: var(--bg-card); border-radius: 12px; overflow: hidden; box-shadow: var(--shadow-sm); }
+    .comparison-table th { background: var(--bg-secondary); padding: 1rem; text-align: left; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; font-size: 0.85rem; }
+    .comparison-table td { padding: 1rem; border-bottom: 1px solid var(--border-color); }
+    .comparison-table tr:last-child td { border-bottom: none; }
+    .table-price { font-family: var(--font-mono); font-weight: 700; color: var(--color-gold); }
+    .table-usd { font-family: var(--font-mono); color: var(--text-secondary); }
+  </style>
+</head>
+<body class="silver-theme">
+  <header class="header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo"><div class="logo-icon" style="background: linear-gradient(135deg, #E0E0E0, #9E9E9E);">Ag</div><span>Gold Price Live</span></a>
+      <nav class="nav">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="gold-price.html" class="nav-link">Gold Price</a>
+        <a href="silver-price.html" class="nav-link active">Silver Price</a>
+        <a href="calculator.html" class="nav-link">Calculator</a>
+        <a href="news.html" class="nav-link">News</a>
+        <a href="blog.html" class="nav-link">Blog</a>
+      </nav>
+      <div class="header-actions">
+        <div class="lang-switch">
+          <button class="lang-btn" data-lang="de">DE</button>
+          <button class="lang-btn" data-lang="ar">AR</button>
+          <button class="lang-btn active" data-lang="en">EN</button>
+        </div>
+        <button class="theme-toggle" id="themeToggle"><svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg></button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <div class="container">
+        <h1 class="page-title">🥈 Silver Price Live</h1>
+        <p class="page-subtitle">Real-time Spot Rates for Ounce, Gram, and Kilo in EUR & USD</p>
+      </div>
+    </div>
+
+    <section class="section">
+      <div class="container">
+        <div class="update-info" style="margin-bottom: 2rem;">
+          <span class="update-dot"></span>
+          <span>Last Update: <strong id="lastUpdate">--:--:--</strong></span>
+          <button class="refresh-btn" id="refreshBtn">Refresh</button>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
+            <!-- 1. Live Price Card -->
+            <div class="price-card" style="height: fit-content;">
+                <div class="price-card-header">
+                    <h2 class="price-card-title">🥈 Fine Silver (999)</h2>
+                    <span class="price-card-badge">LIVE</span>
+                </div>
+                <div class="price-value">
+                    <span id="silverPrice">--,-- €</span>
+                    <span class="price-unit">/ Gram</span>
+                </div>
+                <div class="price-usd-row">
+                    <span class="usd-label">in USD:</span>
+                    <span id="silverPriceUsd" class="usd-value">--,-- $</span>
+                </div>
+                <div class="price-change" id="silverChange">--%</div>
+            </div>
+
+            <!-- 2. Interactive Calculator -->
+            <div class="card p-6" id="silverCalcForm">
+                <!-- Calculator Injected by JS -->
+            </div>
+        </div>
+
+        <!-- NEW: Silver Weight Box Grid -->
+        <h2 class="section-title text-center mb-8">Silver Prices by Weight (Bars)</h2>
+        <div class="karat-grid-boxes mb-16">
+             <div class="karat-box highlight">
+                <div class="k-label">Ounce</div>
+                <div class="k-purity">31.1g Silver</div>
+                <div class="k-price" id="silverOzPrice">-- €</div>
+                <div class="k-price-usd" id="silverOzPriceUsd">-- $</div>
+             </div>
+             <div class="karat-box">
+                <div class="k-label">10 Gram</div>
+                <div class="k-purity">Bar</div>
+                <div class="k-price" id="silver10gPrice">-- €</div>
+                <div class="k-price-usd" id="silver10gPriceUsd">-- $</div>
+             </div>
+             <div class="karat-box">
+                <div class="k-label">20 Gram</div>
+                <div class="k-purity">Bar</div>
+                <div class="k-price" id="silver20gPrice">-- €</div>
+                <div class="k-price-usd" id="silver20gPriceUsd">-- $</div>
+             </div>
+             <div class="karat-box">
+                <div class="k-label">50 Gram</div>
+                <div class="k-purity">Bar</div>
+                <div class="k-price" id="silver50gPrice">-- €</div>
+                <div class="k-price-usd" id="silver50gPriceUsd">-- $</div>
+             </div>
+             <div class="karat-box">
+                <div class="k-label">100 Gram</div>
+                <div class="k-purity">Bar</div>
+                <div class="k-price" id="silver100gPrice">-- €</div>
+                <div class="k-price-usd" id="silver100gPriceUsd">-- $</div>
+             </div>
+        </div>
+
+         <!-- Silver Purity/Items Grid (Existing, simplified) -->
+         <h2 class="section-title text-center mb-8">Silver Prices by Type</h2>
+         <div class="karat-grid-boxes mb-16">
+              <div class="karat-box">
+                 <div class="k-label">Kilo Silver</div>
+                 <div class="k-purity">1000g Bar</div>
+                 <div class="k-price" id="silverKgPrice">-- €</div>
+                 <div class="k-price-usd" id="silverKgPriceUsd">-- $</div>
+              </div>
+              <div class="karat-box">
+                 <div class="k-label">925 Sterling</div>
+                 <div class="k-purity">Jewelry / g</div>
+                 <div class="k-price" id="silver925Price">-- €</div>
+                 <div class="k-price-usd" id="silver925PriceUsd">-- $</div>
+              </div>
+              <div class="karat-box">
+                 <div class="k-label">800 Silver</div>
+                 <div class="k-purity">Cutlery / g</div>
+                 <div class="k-price" id="silver800Price">-- €</div>
+                 <div class="k-price-usd" id="silver800PriceUsd">-- $</div>
+              </div>
+         </div>
+
+        <!-- Detailed Comparison Table -->
+        <h2 class="section-title text-center mb-6">Detailed Silver Table</h2>
+        <div class="table-container mb-16">
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Type / Alloy</th>
+                        <th>Weight / Description</th>
+                        <th>Price (EUR)</th>
+                        <th>Price (USD)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Troy Ounce</strong></td>
+                        <td>31.1035 Grams</td>
+                        <td id="silverOzPriceTable" class="table-price">-- €</td>
+                        <td id="silverOzPriceTableUsd" class="table-usd">-- $</td>
+                    </tr>
+                     <tr>
+                        <td><strong>Silver Kilo</strong></td>
+                        <td>1000 Grams</td>
+                        <td id="silverKgPriceTable" class="table-price">-- €</td>
+                        <td id="silverKgPriceTableUsd" class="table-usd">-- $</td>
+                    </tr>
+                    <tr>
+                        <td><strong>925 Sterling</strong></td>
+                        <td>per Gram</td>
+                        <td id="silver925PriceTable" class="table-price">-- €</td>
+                        <td id="silver925PriceTableUsd" class="table-usd">-- $</td>
+                    </tr>
+                    <tr>
+                        <td><strong>800 Silver</strong></td>
+                        <td>per Gram</td>
+                        <td id="silver800PriceTable" class="table-price">-- €</td>
+                        <td id="silver800PriceTableUsd" class="table-usd">-- $</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- 5. Silver Info -->
+        <h2 class="section-title mb-6">🔍 Silver Standards & Markets</h2>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
+            <div class="info-card">
+                <h3 class="text-xl font-bold mb-4" style="color: var(--color-gold);">Silver Grades Guide</h3>
+                <div class="purity-list">
+                    <div class="purity-item mb-4">
+                        <div class="flex justify-between mb-1"><span class="font-bold">Fine Silver (999)</span><span class="text-sm">Pure</span></div>
+                        <div class="w-full bg-gray-200 rounded-full h-3 dark:bg-gray-700">
+                            <div class="h-3 rounded-full" style="width: 100%; background: linear-gradient(90deg, #C0C0C0, #E0E0E0);"></div>
+                        </div>
+                    </div>
+                    <div class="purity-item mb-4">
+                        <div class="flex justify-between mb-1"><span class="font-bold">Sterling (925)</span><span class="text-sm">Standard</span></div>
+                        <div class="w-full bg-gray-200 rounded-full h-3 dark:bg-gray-700">
+                            <div class="h-3 rounded-full" style="width: 92.5%; background: linear-gradient(90deg, #C0C0C0, #E0E0E0);"></div>
+                        </div>
+                    </div>
+                    <div class="purity-item mb-4">
+                        <div class="flex justify-between mb-1"><span class="font-bold">Coin Silver (900)</span><span class="text-sm">Coins</span></div>
+                        <div class="w-full bg-gray-200 rounded-full h-3 dark:bg-gray-700">
+                            <div class="h-3 rounded-full" style="width: 90%; background: linear-gradient(90deg, #C0C0C0, #E0E0E0);"></div>
+                        </div>
+                    </div>
+                    <div class="purity-item">
+                        <div class="flex justify-between mb-1"><span class="font-bold">Silver 800</span><span class="text-sm">Tableware</span></div>
+                        <div class="w-full bg-gray-200 rounded-full h-3 dark:bg-gray-700">
+                            <div class="h-3 rounded-full" style="width: 80%; background: linear-gradient(90deg, #C0C0C0, #E0E0E0);"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="info-card">
+                 <h3 class="text-xl font-bold mb-4" style="color: var(--text-primary);">🌍 Industrial Demand</h3>
+                 <p class="text-muted mb-4">Silver is a critical component in modern technology. Major industrial uses include:</p>
+                 <ul class="list-disc pl-5 text-muted space-y-2">
+                    <li><strong>Solar Panels:</strong> High conductivity essential for PV cells.</li>
+                    <li><strong>Electronics:</strong> Switches, contacts, and circuit boards.</li>
+                    <li><strong>Automotive:</strong> EV batteries and contacts.</li>
+                    <li><strong>Medical:</strong> Antibacterial properties.</li>
+                 </ul>
+            </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <a href="index.html" class="logo">
+              <div class="logo-icon" style="background: linear-gradient(135deg, #E0E0E0, #9E9E9E);">Ag</div>
+              <span>Gold Price Live</span>
+            </a>
+            <p class="footer-desc">
+              Your trusted source for live Gold and Silver prices in Europe and Worldwide.
+            </p>
+          </div>
+
+          <div>
+            <h4 class="footer-title">Quick Links</h4>
+            <div class="footer-links">
+              <a href="gold-price.html" class="footer-link">Gold Price</a>
+              <a href="silver-price.html" class="footer-link">Silver Price</a>
+              <a href="calculator.html" class="footer-link">Calculator</a>
+              <a href="news.html" class="footer-link">News</a>
+            </div>
+          </div>
+
+          <div>
+            <h4 class="footer-title">Information</h4>
+            <div class="footer-links">
+              <a href="about.html" class="footer-link">About Us</a>
+              <a href="blog.html" class="footer-link">Blog</a>
+              <a href="contact.html" class="footer-link">Contact</a>
+            </div>
+          </div>
+
+          <div>
+            <h4 class="footer-title">Legal</h4>
+            <div class="footer-links">
+              <a href="privacy.html" class="footer-link">Privacy Policy</a>
+              <a href="terms.html" class="footer-link">Terms & Conditions</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p class="footer-copyright">
+            © 2026 Gold Price Live Europe. All rights reserved.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+  <script src="../js/api.js"></script>
+  <script src="../js/translations.js"></script>
+  <script src="../js/i18n.js"></script>
+  <script src="../js/calculator.js"></script>
+  <script src="../js/cookie-consent.js"></script>
+  <script src="../js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+# Redirect root to German homepage
+/  /de/index.html  200
+
+# Language redirects
+/de  /de/index.html  200
+/en  /en/index.html  200
+/ar  /ar/index.html  200
+
+# 404 page
+/*  /404.html  404

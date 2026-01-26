@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        #calculatorApp {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .status {
+            padding: 10px;
+            margin: 20px 0;
+            border-radius: 5px;
+            background: #e3f2fd;
+            border-left: 4px solid #2196f3;
+        }
+    </style>
+</head>
+<body>
+    <h1>🧪 Calculator Test Page</h1>
+    <div class="status" id="status">Loading...</div>
+    
+    <div id="calculatorApp"></div>
+
+    <script>
+        // Minimal CSS variables needed
+        const root = document.documentElement;
+        root.style.setProperty('--bg-card', '#fff');
+        root.style.setProperty('--border-color', '#ddd');
+        root.style.setProperty('--text-primary', '#333');
+        root.style.setProperty('--text-secondary', '#666');
+        root.style.setProperty('--text-muted', '#999');
+        root.style.setProperty('--color-gold', '#D4AF37');
+        root.style.setProperty('--bg-secondary', '#f9f9f9');
+        root.style.setProperty('--bg-input', '#fff');
+        root.style.setProperty('--shadow-md', '0 4px 12px rgba(0,0,0,0.1)');
+        root.style.setProperty('--font-mono', 'monospace');
+    </script>
+    
+    <script src="../js/calculator.js"></script>
+    <script>
+        // Test the calculator
+        document.addEventListener('DOMContentLoaded', () => {
+            const status = document.getElementById('status');
+            
+            // Initialize calculator
+            Calculator.init();
+            status.innerHTML = `✅ Calculator initialized<br>
+                Gold Price: ${Calculator.goldPricePerGram} €/g<br>
+                Silver Price: ${Calculator.silverPricePerGram} €/g<br>
+                <em>Try entering values in the calculator above!</em>`;
+            
+            // Simulate API update after 2 seconds
+            setTimeout(() => {
+                Calculator.updateRates(82.50, 1.05, 1.08, {
+                    'USD': 1.0, 'EUR': 0.926
+                });
+                status.innerHTML += `<br><br>🔄 Prices updated from "API":<br>
+                    Gold: ${Calculator.goldPricePerGram} €/g<br>
+                    Silver: ${Calculator.silverPricePerGram} €/g`;
+            }, 2000);
+        });
+    </script>
+</body>
+</html>

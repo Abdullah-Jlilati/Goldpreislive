@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="google-site-verification" content="googled26252658d7c7245" />
+    <title>Gold Price Live - Current Rates & Charts in Europe / World</title>
+    <meta name="description" content="Live Gold and Silver spot prices in Europe. Real-time rates for 24K, 22K, 21K, 18K gold per gram in EUR and USD.">
+    <meta name="keywords" content="gold price, gold rate, silver price, buy gold, live gold price, gold EUR, gold USD, 24 karat gold" />
+    <link rel="canonical" href="https://goldpreislive.com/en/" />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🥇</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        .price-usd-row { margin-top: 5px; font-size: 0.9rem; color: var(--text-muted); display: flex; align-items: center; gap: 5px; }
+        .usd-value { color: var(--text-secondary); font-weight: 600; font-family: var(--font-mono); }
+        
+        .karat-grid-boxes { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); 
+            gap: 20px; 
+        }
+        .karat-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+        .karat-box.highlight { border-color: var(--color-gold); background: rgba(212, 175, 55, 0.05); }
+        .karat-box:hover { transform: translateY(-3px); border-color: var(--color-gold); box-shadow: var(--shadow-md); }
+        .k-label { font-size: 1.5rem; font-weight: 800; color: var(--color-gold); margin-bottom: 0.25rem; }
+        .k-purity { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.05em; }
+        .k-price { font-size: 1.25rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.25rem; }
+        .k-price-usd { font-size: 0.9rem; color: var(--text-secondary); }
+
+        .comparison-table { width: 100%; border-collapse: collapse; background: var(--bg-card); border-radius: 12px; overflow: hidden; box-shadow: var(--shadow-sm); }
+        .comparison-table th { background: var(--bg-secondary); padding: 1rem; text-align: left; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; font-size: 0.85rem; }
+        .comparison-table td { padding: 1rem; border-bottom: 1px solid var(--border-color); }
+        .comparison-table tr:last-child td { border-bottom: none; }
+        .table-price { font-family: var(--font-mono); font-weight: 700; color: var(--color-gold); }
+        .table-usd { font-family: var(--font-mono); color: var(--text-secondary); }
+        
+        /* News Card Styles */
+        .bg-secondary { background: var(--bg-secondary); }
+        .news-card { background: var(--bg-card); border-radius: 12px; overflow: hidden; border: 1px solid var(--border-color); transition: transform 0.2s; }
+        .news-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+        .news-image-placeholder { height: 160px; background: linear-gradient(45deg, #1a1a1a, #2a2a2a); display: flex; align-items: center; justify-content: center; font-size: 3rem; color: var(--color-gold); }
+        .news-content { padding: 1.5rem; }
+        .news-date { font-size: 0.8rem; color: var(--text-muted); display: block; margin-bottom: 0.5rem; }
+        .news-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.75rem; color: var(--text-primary); }
+        .news-excerpt { font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1rem; line-height: 1.5; }
+        .read-more { color: var(--color-gold); font-weight: 600; font-size: 0.9rem; text-decoration: none; }
+        .read-more:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container header-inner">
+            <a href="index.html" class="logo"><div class="logo-icon">Au</div><span>Gold Price Live</span></a>
+            <nav class="nav">
+                <a href="index.html" class="nav-link active">Home</a>
+                <a href="gold-price.html" class="nav-link">Gold Price</a>
+                <a href="silver-price.html" class="nav-link">Silver Price</a>
+                <a href="calculator.html" class="nav-link">Calculator</a>
+                <a href="news.html" class="nav-link">News</a>
+                <a href="blog.html" class="nav-link">Blog</a>
+            </nav>
+            <div class="header-actions">
+                <div class="lang-switch">
+                    <button class="lang-btn" data-lang="de">DE</button>
+                    <button class="lang-btn" data-lang="ar">AR</button>
+                    <button class="lang-btn active" data-lang="en">EN</button>
+                </div>
+                <button class="theme-toggle" id="themeToggle"><svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg></button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1 class="hero-title">Live Gold & Silver Prices</h1>
+                <p class="hero-subtitle">Real-time spot rates in Euro (€) and US Dollar ($) - Updated every 60s</p>
+                <div class="update-info">
+                    <span class="update-dot"></span>
+                    <span>Last Update: <strong id="lastUpdate">--:--:--</strong></span>
+                    <button class="refresh-btn" id="refreshBtn">Refresh</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <!-- 1. Main Headline Prices -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+                    <a href="gold-price.html" class="price-card headline-card gold clickable">
+                        <div class="price-card-header">
+                            <h2 class="price-card-title">🥇 Gold Price (24K)</h2>
+                            <span class="price-card-badge">Live</span>
+                        </div>
+                        <div class="price-value">
+                            <span id="goldPrice">--,-- €</span>
+                            <span class="price-unit">/g</span>
+                        </div>
+                        <div class="price-value-usd">
+                            <span id="goldPriceUsd">--,-- $</span>
+                            <span class="price-unit">/g</span>
+                        </div>
+                        <div class="price-change" id="goldChange">--%</div>
+                    </a>
+                    <a href="silver-price.html" class="price-card headline-card silver clickable">
+                        <div class="price-card-header">
+                            <h2 class="price-card-title">🥈 Silver Price</h2>
+                            <span class="price-card-badge">Live</span>
+                        </div>
+                        <div class="price-value">
+                            <span id="silverPrice">--,-- €</span>
+                            <span class="price-unit">/g</span>
+                        </div>
+                        <div class="price-value-usd">
+                            <span id="silverPriceUsd">--,-- $</span>
+                            <span class="price-unit">/g</span>
+                        </div>
+                        <div class="price-change" id="silverChange">--%</div>
+                    </a>
+                </div>
+
+                <!-- 2. Karat Box Grid -->
+                <h2 class="section-title text-center mb-8">Current Gold Rates by Karat</h2>
+                <div class="karat-grid-boxes mb-16">
+                     <div class="karat-box">
+                        <div class="k-label">24K</div>
+                        <div class="k-purity">999 Pure</div>
+                        <div class="k-price" id="24kPrice">-- €</div>
+                        <div class="k-price-usd" id="24kPriceUsd">-- $</div>
+                     </div>
+                     <div class="karat-box">
+                        <div class="k-label">22K</div>
+                        <div class="k-purity">916 Gold</div>
+                        <div class="k-price" id="22kPrice">-- €</div>
+                        <div class="k-price-usd" id="22kPriceUsd">-- $</div>
+                     </div>
+                     <div class="karat-box">
+                        <div class="k-label">21K</div>
+                        <div class="k-purity">875 Gold</div>
+                        <div class="k-price" id="21kPrice">-- €</div>
+                        <div class="k-price-usd" id="21kPriceUsd">-- $</div>
+                     </div>
+                     <div class="karat-box">
+                        <div class="k-label">18K</div>
+                        <div class="k-purity">750 Gold</div>
+                        <div class="k-price" id="18kPrice">-- €</div>
+                        <div class="k-price-usd" id="18kPriceUsd">-- $</div>
+                     </div>
+                     <div class="karat-box">
+                        <div class="k-label">14K</div>
+                        <div class="k-purity">585 Gold</div>
+                        <div class="k-price" id="14kPrice">-- €</div>
+                        <div class="k-price-usd" id="14kPriceUsd">-- $</div>
+                     </div>
+                </div>
+
+                <!-- 3. NEW: Weight Box Grid -->
+                <h2 class="section-title text-center mb-8">Gold Prices by Weight (Bars)</h2>
+                <div class="karat-grid-boxes mb-16">
+                     <div class="karat-box highlight">
+                        <div class="k-label">Ounce</div>
+                        <div class="k-purity">31.1g Gold</div>
+                        <div class="k-price" id="goldOzPrice">-- €</div>
+                        <div class="k-price-usd" id="goldOzPriceUsd">-- $</div>
+                     </div>
+                     <div class="karat-box">
+                        <div class="k-label">10 Gram</div>
+                        <div class="k-purity">Gold Bar</div>
+                        <div class="k-price" id="gold10gPrice">-- €</div>
+                        <div class="k-price-usd" id="gold10gPriceUsd">-- $</div>
+                     </div>
+                     <div class="karat-box">
+                        <div class="k-label">20 Gram</div>
+                        <div class="k-purity">Gold Bar</div>
+                        <div class="k-price" id="gold20gPrice">-- €</div>
+                        <div class="k-price-usd" id="gold20gPriceUsd">-- $</div>
+                     </div>
+                     <div class="karat-box">
+                        <div class="k-label">50 Gram</div>
+                        <div class="k-purity">Gold Bar</div>
+                        <div class="k-price" id="gold50gPrice">-- €</div>
+                        <div class="k-price-usd" id="gold50gPriceUsd">-- $</div>
+                     </div>
+                     <div class="karat-box">
+                        <div class="k-label">100 Gram</div>
+                        <div class="k-purity">Gold Bar</div>
+                        <div class="k-price" id="gold100gPrice">-- €</div>
+                        <div class="k-price-usd" id="gold100gPriceUsd">-- $</div>
+                     </div>
+                </div>
+
+                <!-- 4. Detailed Comparison Table -->
+                <h2 class="section-title text-center mb-6">Price Comparison Table</h2>
+                <div class="table-container mb-16">
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>Karat</th>
+                                <th>Purity</th>
+                                <th>Price (EUR) / g</th>
+                                <th>Price (USD) / g</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>24 Karat</strong></td>
+                                <td>999.9 (Fine Gold)</td>
+                                <td id="24kPriceTable" class="table-price">-- €</td>
+                                <td id="24kPriceTableUsd" class="table-usd">-- $</td>
+                            </tr>
+                            <tr>
+                                <td><strong>22 Karat</strong></td>
+                                <td>916.6</td>
+                                <td id="22kPriceTable" class="table-price">-- €</td>
+                                <td id="22kPriceTableUsd" class="table-usd">-- $</td>
+                            </tr>
+                            <tr>
+                                <td><strong>21 Karat</strong></td>
+                                <td>875.0</td>
+                                <td id="21kPriceTable" class="table-price">-- €</td>
+                                <td id="21kPriceTableUsd" class="table-usd">-- $</td>
+                            </tr>
+                            <tr>
+                                <td><strong>18 Karat</strong></td>
+                                <td>750.0</td>
+                                <td id="18kPriceTable" class="table-price">-- €</td>
+                                <td id="18kPriceTableUsd" class="table-usd">-- $</td>
+                            </tr>
+                             <tr>
+                                <td><strong>14 Karat</strong></td>
+                                <td>585.0</td>
+                                <td id="14kPriceTable" class="table-price">-- €</td>
+                                <td id="14kPriceTableUsd" class="table-usd">-- $</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- 5. Charts -->
+                <!-- 5. Market Standards & Info -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
+                    <div class="info-card">
+                        <h2 class="section-title mb-6">🔍 Gold Purity Standards</h2>
+                        <div class="purity-list">
+                            <div class="purity-item mb-4">
+                                <div class="flex justify-between mb-1"><span class="font-bold">24K</span><span class="text-sm">99.9% (Pure)</span></div>
+                                <div class="w-full bg-gray-200 rounded-full h-3 dark:bg-gray-700">
+                                    <div class="h-3 rounded-full" style="width: 100%; background: linear-gradient(90deg, #FFD700, #FDB931);"></div>
+                                </div>
+                                <p class="text-xs text-muted mt-1">Investment bars & coins. Soft, rich yellow.</p>
+                            </div>
+                            <div class="purity-item mb-4">
+                                <div class="flex justify-between mb-1"><span class="font-bold">22K</span><span class="text-sm">91.6%</span></div>
+                                <div class="w-full bg-gray-200 rounded-full h-3 dark:bg-gray-700">
+                                    <div class="h-3 rounded-full" style="width: 91.6%; background: linear-gradient(90deg, #FFD700, #FDB931);"></div>
+                                </div>
+                                <p class="text-xs text-muted mt-1">High quality jewelry, durable.</p>
+                            </div>
+                            <div class="purity-item mb-4">
+                                <div class="flex justify-between mb-1"><span class="font-bold">21K</span><span class="text-sm">87.5%</span></div>
+                                <div class="w-full bg-gray-200 rounded-full h-3 dark:bg-gray-700">
+                                    <div class="h-3 rounded-full" style="width: 87.5%; background: linear-gradient(90deg, #FFD700, #FDB931);"></div>
+                                </div>
+                                <p class="text-xs text-muted mt-1">Standard in Arab world & Asia.</p>
+                            </div>
+                            <div class="purity-item">
+                                <div class="flex justify-between mb-1"><span class="font-bold">18K</span><span class="text-sm">75.0%</span></div>
+                                <div class="w-full bg-gray-200 rounded-full h-3 dark:bg-gray-700">
+                                    <div class="h-3 rounded-full" style="width: 75%; background: linear-gradient(90deg, #FFD700, #FDB931);"></div>
+                                </div>
+                                <p class="text-xs text-muted mt-1">Standard in West, very durable.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="info-card">
+                         <h2 class="section-title mb-6">⚙️ Silver Grades</h2>
+                        <div class="purity-list">
+                            <div class="purity-item mb-4">
+                                <div class="flex justify-between mb-1"><span class="font-bold">Fine Silver</span><span class="text-sm">99.9%</span></div>
+                                <div class="w-full bg-gray-200 rounded-full h-3 dark:bg-gray-700">
+                                    <div class="h-3 rounded-full" style="width: 100%; background: linear-gradient(90deg, #C0C0C0, #E0E0E0);"></div>
+                                </div>
+                                <p class="text-xs text-muted mt-1">Bullion bars & coins. Investment grade.</p>
+                            </div>
+                            <div class="purity-item mb-4">
+                                <div class="flex justify-between mb-1"><span class="font-bold">Sterling (925)</span><span class="text-sm">92.5%</span></div>
+                                <div class="w-full bg-gray-200 rounded-full h-3 dark:bg-gray-700">
+                                    <div class="h-3 rounded-full" style="width: 92.5%; background: linear-gradient(90deg, #C0C0C0, #E0E0E0);"></div>
+                                </div>
+                                <p class="text-xs text-muted mt-1">Jewelry & quality cutlery.</p>
+                            </div>
+                            <div class="purity-item">
+                                <div class="flex justify-between mb-1"><span class="font-bold">Silver 800</span><span class="text-sm">80.0%</span></div>
+                                <div class="w-full bg-gray-200 rounded-full h-3 dark:bg-gray-700">
+                                    <div class="h-3 rounded-full" style="width: 80%; background: linear-gradient(90deg, #C0C0C0, #E0E0E0);"></div>
+                                </div>
+                                <p class="text-xs text-muted mt-1">Tableware & holloware.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    <!-- Latest News Section -->
+    <section class="section bg-secondary">
+        <div class="container">
+            <h2 class="section-title text-center mb-8">📰 Latest Gold & Economy News</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+                <!-- News Item 1 -->
+                <article class="news-card">
+                    <div class="news-image-placeholder">📈</div>
+                    <div class="news-content">
+                        <span class="news-date">January 24, 2026</span>
+                        <h3 class="news-title">Gold Price Forecast Q1 2026</h3>
+                        <p class="news-excerpt">Comprehensive analysis of market movements and the impact of US interest rates on gold.</p>
+                        <a href="news.html" class="read-more">Read more →</a>
+                    </div>
+                </article>
+                <!-- News Item 2 -->
+                <article class="news-card">
+                    <div class="news-image-placeholder">🏦</div>
+                    <div class="news-content">
+                        <span class="news-date">January 23, 2026</span>
+                        <h3 class="news-title">Why is Silver Surging?</h3>
+                        <p class="news-excerpt">Reasons behind the sudden spike in silver prices and its relation to industrial demand.</p>
+                        <a href="news.html" class="read-more">Read more →</a>
+                    </div>
+                </article>
+                <!-- News Item 3 -->
+                <article class="news-card">
+                    <div class="news-image-placeholder">💡</div>
+                    <div class="news-content">
+                        <span class="news-date">January 22, 2026</span>
+                        <h3 class="news-title">5 Tips Before Buying Gold Bars</h3>
+                        <p class="news-excerpt">Your complete guide to purchasing gold bars safely and avoiding fraud.</p>
+                        <a href="news.html" class="read-more">Read more →</a>
+                    </div>
+                </article>
+            </div>
+            <div class="text-center">
+                <a href="news.html" class="btn btn-primary">View All News</a>
+            </div>
+        </div>
+    </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <a href="index.html" class="logo">
+              <div class="logo-icon">Au</div>
+              <span>Gold Price Live</span>
+            </a>
+            <p class="footer-desc">
+              Your trusted source for live Gold and Silver prices in Europe and Worldwide.
+            </p>
+          </div>
+
+          <div>
+            <h4 class="footer-title">Quick Links</h4>
+            <div class="footer-links">
+              <a href="gold-price.html" class="footer-link">Gold Price</a>
+              <a href="silver-price.html" class="footer-link">Silver Price</a>
+              <a href="calculator.html" class="footer-link">Calculator</a>
+              <a href="news.html" class="footer-link">News</a>
+            </div>
+          </div>
+
+          <div>
+            <h4 class="footer-title">Information</h4>
+            <div class="footer-links">
+              <a href="about.html" class="footer-link">About Us</a>
+              <a href="blog.html" class="footer-link">Blog</a>
+              <a href="contact.html" class="footer-link">Contact</a>
+            </div>
+          </div>
+
+          <div>
+            <h4 class="footer-title">Legal</h4>
+            <div class="footer-links">
+              <a href="privacy.html" class="footer-link">Privacy Policy</a>
+              <a href="terms.html" class="footer-link">Terms & Conditions</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p class="footer-copyright">
+            © 2026 Gold Price Live Europe. All rights reserved.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Mobile Quick Access Navigation -->
+    <nav class="mobile-quick-nav">
+        <div class="quick-nav-grid">
+            <a href="index.html" class="quick-nav-btn active">
+                <span class="quick-nav-icon">🏠</span>
+                <span>Home</span>
+            </a>
+            <a href="gold-price.html" class="quick-nav-btn">
+                <span class="quick-nav-icon">🥇</span>
+                <span>Gold</span>
+            </a>
+            <a href="silver-price.html" class="quick-nav-btn">
+                <span class="quick-nav-icon">🥈</span>
+                <span>Silver</span>
+            </a>
+            <a href="calculator.html" class="quick-nav-btn">
+                <span class="quick-nav-icon">🔢</span>
+                <span>Calc</span>
+            </a>
+        </div>
+    </nav>
+
+    <script src="../js/api.js"></script>
+    <script src="../js/translations.js"></script>
+    <script src="../js/i18n.js"></script>
+    <script src="../js/app.js"></script>
+</body>
+</html>

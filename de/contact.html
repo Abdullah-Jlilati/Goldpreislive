@@ -1,0 +1,147 @@
+﻿<!DOCTYPE html>
+<html lang="de" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kontakt | Goldpreis Live</title>
+  <meta name="description" content="Kontaktieren Sie Goldpreis Live. Wir freuen uns auf Ihre Nachricht.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📧</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+  <header class="header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo"><div class="logo-icon">Au</div><span>Goldpreis Live</span></a>
+      <nav class="nav">
+        <a href="index.html" class="nav-link">Startseite</a>
+        <a href="gold-price.html" class="nav-link">Goldpreis</a>
+        <a href="silver-price.html" class="nav-link">Silberpreis</a>
+        <a href="calculator.html" class="nav-link">Rechner</a>
+        <a href="news.html" class="nav-link">Nachrichten</a>
+        <a href="blog.html" class="nav-link">Blog</a>
+      </nav>
+      <div class="header-actions">
+        <div class="lang-switch">
+          <button class="lang-btn active" data-lang="de">DE</button>
+          <button class="lang-btn" data-lang="en">EN</button>
+          <button class="lang-btn" data-lang="ar">AR</button>
+        </div>
+        <button class="theme-toggle" id="themeToggle"><svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg></button>
+        <button class="mobile-menu-btn" id="mobileMenuBtn"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+      </div>
+    </div>
+  </header>
+  
+  <nav class="mobile-nav" id="mobileNav">
+    <a href="index.html" class="mobile-nav-link">Startseite</a>
+    <a href="contact.html" class="mobile-nav-link active">Kontakt</a>
+  </nav>
+
+  <main>
+    <div class="page-header">
+      <div class="container">
+        <h1 class="page-title">📧 Kontakt</h1>
+        <p class="page-subtitle">Wir freuen uns auf Ihre Nachricht</p>
+      </div>
+    </div>
+
+    <section class="section">
+      <div class="container">
+        <div class="contact-info">
+          <div class="contact-info-item">
+            <div class="contact-icon">📧</div>
+            <h3>E-Mail</h3>
+            <p>info@goldpreislive.de</p>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-icon">📍</div>
+            <h3>Standort</h3>
+            <p>Deutschland</p>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-icon">🕐</div>
+            <h3>Erreichbarkeit</h3>
+            <p>Mo-Fr: 9:00-17:00</p>
+          </div>
+        </div>
+
+        <div class="contact-form">
+          <h2 style="text-align: center; margin-bottom: 1.5rem;">Nachricht senden</h2>
+          <form class="calculator-form" id="contactForm">
+            <div class="form-group">
+              <label class="form-label">Ihr Name</label>
+              <input type="text" class="form-input" id="contactName" placeholder="Max Mustermann" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">E-Mail Adresse</label>
+              <input type="email" class="form-input" id="contactEmail" placeholder="ihre@email.de" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Betreff</label>
+              <input type="text" class="form-input" id="contactSubject" placeholder="Betreff Ihrer Nachricht">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Ihre Nachricht</label>
+              <textarea class="form-input" id="contactMessage" rows="5" placeholder="Ihre Nachricht..." required style="resize: vertical;"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;">Nachricht senden</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-section">
+          <h3>Navigation</h3>
+          <ul class="footer-links">
+            <li><a href="index.html">Startseite</a></li>
+            <li><a href="gold-price.html">Goldpreis</a></li>
+            <li><a href="silver-price.html">Silberpreis</a></li>
+            <li><a href="calculator.html">Rechner</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Information</h3>
+          <ul class="footer-links">
+            <li><a href="news.html">Nachrichten</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="about.html">Über uns</a></li>
+            <li><a href="contact.html">Kontakt</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Rechtliches</h3>
+          <ul class="footer-links">
+            <li><a href="privacy.html">Datenschutz</a></li>
+            <li><a href="terms.html">AGB</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copyright">© 2026 Goldpreis Live. Alle Rechte vorbehalten.</p>
+      </div>
+    </div>
+  </footer>
+
+  <div class="cookie-banner" id="cookieBanner">
+    <div class="cookie-content">
+      <div class="cookie-text"><h4>🍪 Cookie-Einstellungen</h4></div>
+      <div class="cookie-buttons">
+        <button class="btn btn-secondary" id="acceptNecessaryCookies">Nur notwendige</button>
+        <button class="btn btn-primary" id="acceptAllCookies">Alle akzeptieren</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/api.js"></script>
+  <script src="../js/translations.js"></script>
+  <script src="../js/i18n.js"></script>
+  <script src="../js/cookie-consent.js"></script>
+  <script src="../js/app.js"></script>
+</body>
+</html>

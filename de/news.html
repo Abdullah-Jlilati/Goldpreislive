@@ -1,0 +1,194 @@
+﻿<!DOCTYPE html>
+<html lang="de" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gold Nachrichten | Goldpreis Live</title>
+  <meta name="description" content="Aktuelle Nachrichten und Analysen zu Gold, Silber und Edelmetallen. Marktberichte und Preisentwicklung.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📰</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+  <header class="header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo"><div class="logo-icon">Au</div><span>Goldpreis Live</span></a>
+      <nav class="nav">
+        <a href="index.html" class="nav-link">Startseite</a>
+        <a href="gold-price.html" class="nav-link">Goldpreis</a>
+        <a href="silver-price.html" class="nav-link">Silberpreis</a>
+        <a href="calculator.html" class="nav-link">Rechner</a>
+        <a href="news.html" class="nav-link active">Nachrichten</a>
+        <a href="blog.html" class="nav-link">Blog</a>
+      </nav>
+      <div class="header-actions">
+        <div class="lang-switch">
+          <button class="lang-btn active" data-lang="de">DE</button>
+          <button class="lang-btn" data-lang="en">EN</button>
+          <button class="lang-btn" data-lang="ar">AR</button>
+        </div>
+        <button class="theme-toggle" id="themeToggle"><svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg><svg id="sunIcon" style="display:none" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg></button>
+        <button class="mobile-menu-btn" id="mobileMenuBtn"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+      </div>
+    </div>
+  </header>
+  
+  <nav class="mobile-nav" id="mobileNav">
+    <a href="index.html" class="mobile-nav-link">Startseite</a>
+    <a href="gold-price.html" class="mobile-nav-link">Goldpreis</a>
+    <a href="silver-price.html" class="mobile-nav-link">Silberpreis</a>
+    <a href="calculator.html" class="mobile-nav-link">Rechner</a>
+    <a href="news.html" class="mobile-nav-link active">Nachrichten</a>
+    <a href="blog.html" class="mobile-nav-link">Blog</a>
+  </nav>
+
+  <main>
+    <div class="page-header">
+      <div class="container">
+        <h1 class="page-title">📰 Gold Nachrichten</h1>
+        <p class="page-subtitle">Aktuelle Meldungen aus der Welt der Edelmetalle</p>
+      </div>
+    </div>
+
+    <section class="section">
+      <div class="container">
+        <div class="ad-placeholder ad-banner" style="margin-bottom: 2rem;">Werbung / Ad Space</div>
+
+        <div class="news-grid">
+          <article class="news-card" onclick="window.location.href='articles/why-invest-in-gold.html'" style="cursor: pointer;">
+            <div class="news-image" style="background: linear-gradient(135deg, #D4AF37, #B8860B); display: flex; align-items: center; justify-content: center; color: white; font-size: 3rem;">🥇</div>
+            <div class="news-content">
+              <span class="news-category">Investment</span>
+              <h3 class="news-title">Warum 2026 in Gold investieren? 5 Gründe</h3>
+              <p class="news-excerpt">In unsicheren Zeiten bleibt Gold der ultimative Schutz. Erfahren Sie, warum kluge Anleger dieses Jahr verstärkt auf das Edelmetall setzen.</p>
+              <div class="news-meta">
+                <span>📅 15. Januar 2026</span>
+                <span>⏱️ 5 Min. Lesezeit</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="news-card">
+            <div class="news-image" style="background: linear-gradient(135deg, #1A2744, #2C3E50); display: flex; align-items: center; justify-content: center; color: white; font-size: 3rem;">📊</div>
+            <div class="news-content">
+              <span class="news-category">Analyse</span>
+              <h3 class="news-title">Goldpreis-Prognose für 2026</h3>
+              <p class="news-excerpt">Glänzt Gold auch 2026 weiter? Top-Analysten sagen ein starkes Jahr für Edelmetalle voraus, gestützt durch massive Zentralbankkäufe und erwartete Zinssenkungen. Wir beleuchten die optimistischen und pessimistischen Szenarien für Ihr Depot.</p>
+              <div class="news-meta">
+                <span>📅 14. Januar 2026</span>
+                <span>⏱️ 5 Min. Lesezeit</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="news-card" onclick="window.location.href='articles/silver-industrial-demand.html'" style="cursor: pointer;">
+            <div class="news-image" style="background: linear-gradient(135deg, #C0C0C0, #A8A8A8); display: flex; align-items: center; justify-content: center; color: white; font-size: 3rem;">🥈</div>
+            <div class="news-content">
+              <span class="news-category">Markt</span>
+              <h3 class="news-title">Silber: Das Industriemetall der Zukunft</h3>
+              <p class="news-excerpt">Von Solaranlagen bis E-Autos: Die grüne Revolution treibt die Silbernachfrage auf Rekordhöhen. Warum Silber jetzt das unterschätzte Investment ist.</p>
+              <div class="news-meta">
+                <span>📅 13. Januar 2026</span>
+                <span>⏱️ 4 Min. Lesezeit</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="news-card">
+            <div class="news-image" style="background: linear-gradient(135deg, #27AE60, #229954); display: flex; align-items: center; justify-content: center; color: white; font-size: 3rem;">💹</div>
+            <div class="news-content">
+              <span class="news-category">Wirtschaft</span>
+              <h3 class="news-title">EZB-Entscheidung beeinflusst Goldmarkt</h3>
+              <p class="news-excerpt">Die Europäische Zentralbank hat heute wichtige Signale zur Zinspolitik gesendet, die sofortige Auswirkungen auf den Goldpreis hatten. Wir analysieren die Entscheidung, die Marktreaktion und was dies für Investoren im Euro-Raum mittelfristig bedeutet.</p>
+              <div class="news-meta">
+                <span>📅 12. Januar 2026</span>
+                <span>⏱️ 4 Min. Lesezeit</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="news-card">
+            <div class="news-image" style="background: linear-gradient(135deg, #3498DB, #2980B9); display: flex; align-items: center; justify-content: center; color: white; font-size: 3rem;">🌍</div>
+            <div class="news-content">
+              <span class="news-category">Wirtschaft</span>
+              <h3 class="news-title">Zentralbanken kaufen weiter Gold</h3>
+              <p class="news-excerpt">Die Dedollarisierung schreitet voran: Zentralbanken weltweit, insbesondere in Asien und Osteuropa, diversifizieren ihre Reserven massiv in Gold. Ein Blick auf die Strategie hinter den Rekordkäufen und warum dies den Goldpreis langfristig stützen dürfte.</p>
+              <div class="news-meta">
+                <span>📅 11. Januar 2026</span>
+                <span>⏱️ 3 Min. Lesezeit</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="news-card">
+            <div class="news-image" style="background: linear-gradient(135deg, #9B59B6, #8E44AD); display: flex; align-items: center; justify-content: center; color: white; font-size: 3rem;">📈</div>
+            <div class="news-content">
+              <span class="news-category">Analyse</span>
+              <h3 class="news-title">Technische Analyse: Gold im Aufwärtstrend</h3>
+              <p class="news-excerpt">Der Chart lügt nicht: Gold befindet sich in einem stabilen Aufwärtstrendkanal. Unsere technische Analyse zeigt die nächsten wichtigen Widerstandszonen und Unterstützungsniveaus, die Trader jetzt im Auge behalten sollten.</p>
+              <div class="news-meta">
+                <span>📅 10. Januar 2026</span>
+                <span>⏱️ 6 Min. Lesezeit</span>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <div class="ad-placeholder ad-rectangle" style="margin-top: 2rem;">Werbung / Ad Space</div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-section">
+          <h3>Navigation</h3>
+          <ul class="footer-links">
+            <li><a href="index.html">Startseite</a></li>
+            <li><a href="gold-price.html">Goldpreis</a></li>
+            <li><a href="silver-price.html">Silberpreis</a></li>
+            <li><a href="calculator.html">Rechner</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Information</h3>
+          <ul class="footer-links">
+            <li><a href="news.html">Nachrichten</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="about.html">Über uns</a></li>
+            <li><a href="contact.html">Kontakt</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Rechtliches</h3>
+          <ul class="footer-links">
+            <li><a href="privacy.html">Datenschutz</a></li>
+            <li><a href="terms.html">AGB</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copyright">© 2026 Goldpreis Live. Alle Rechte vorbehalten.</p>
+      </div>
+    </div>
+  </footer>
+
+  <div class="cookie-banner" id="cookieBanner">
+    <div class="cookie-content">
+      <div class="cookie-text"><h4>🍪 Cookie-Einstellungen</h4></div>
+      <div class="cookie-buttons">
+        <button class="btn btn-secondary" id="acceptNecessaryCookies">Nur notwendige</button>
+        <button class="btn btn-primary" id="acceptAllCookies">Alle akzeptieren</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/api.js"></script>
+  <script src="../js/translations.js"></script>
+  <script src="../js/i18n.js"></script>
+  <script src="../js/cookie-consent.js"></script>
+  <script src="../js/app.js"></script>
+</body>
+</html>

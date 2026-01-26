@@ -1,0 +1,339 @@
+﻿<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>سعر الذهب مباشر - جميع العيارات | سعر الذهب مباشر أوروبا</title>
+  <meta name="description" content="أسعار الذهب المباشرة للجرام لعيار 24 و22 و21 و18 و14 قيراط باليورو والدولار. تحديثات حية وحاسبة احترافية.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🥇</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+  <style>
+        .price-usd-row { margin-top: 5px; font-size: 0.9rem; color: var(--text-muted); display: flex; align-items: center; gap: 5px; }
+        .usd-value { color: var(--text-secondary); font-weight: 600; font-family: var(--font-mono); }
+        
+        .karat-grid-boxes { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); 
+            gap: 20px; 
+        }
+        .karat-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+        .karat-box.highlight { border-color: var(--color-gold); background: rgba(212, 175, 55, 0.05); }
+        .karat-box:hover { transform: translateY(-3px); border-color: var(--color-gold); box-shadow: var(--shadow-md); }
+        .k-label { font-size: 1.5rem; font-weight: 800; color: var(--color-gold); margin-bottom: 0.25rem; }
+        .k-purity { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.05em; }
+        .k-price { font-size: 1.25rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.25rem; }
+        .k-price-usd { font-size: 0.9rem; color: var(--text-secondary); }
+
+        .comparison-table { width: 100%; border-collapse: collapse; background: var(--bg-card); border-radius: 12px; overflow: hidden; box-shadow: var(--shadow-sm); }
+        .comparison-table th { background: var(--bg-secondary); padding: 1rem; text-align: right; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; font-size: 0.85rem; }
+        .comparison-table td { padding: 1rem; border-bottom: 1px solid var(--border-color); }
+        .comparison-table tr:last-child td { border-bottom: none; }
+        .table-price { font-family: var(--font-mono); font-weight: 700; color: var(--color-gold); }
+        .table-usd { font-family: var(--font-mono); color: var(--text-secondary); }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo"><div class="logo-icon">Au</div><span>سعر الذهب مباشر أوروبا</span></a>
+      <nav class="nav">
+        <a href="index.html" class="nav-link">الرئيسية</a>
+        <a href="gold-price.html" class="nav-link active">سعر الذهب</a>
+        <a href="silver-price.html" class="nav-link">سعر الفضة</a>
+        <a href="calculator.html" class="nav-link">الحاسبة</a>
+        <a href="news.html" class="nav-link">الأخبار</a>
+        <a href="blog.html" class="nav-link">المدونة</a>
+      </nav>
+      <div class="header-actions">
+        <div class="lang-switch">
+          <button class="lang-btn" data-lang="de">DE</button>
+          <button class="lang-btn active" data-lang="ar">AR</button>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+        <button class="theme-toggle" id="themeToggle"><svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg></button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="page-header">
+      <div class="container">
+        <h1 class="page-title">🥇 سعر الذهب المباشر</h1>
+        <p class="page-subtitle">أسعار حية لجميع العيارات باليورو والدولار - تحديث لحظي</p>
+      </div>
+    </div>
+
+    <section class="section">
+      <div class="container">
+        <div class="update-info" style="margin-bottom: 2rem;">
+          <span class="update-dot"></span>
+          <span>آخر تحديث: <strong id="lastUpdate">--:--:--</strong></span>
+          <button class="refresh-btn" id="refreshBtn">تحديث</button>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
+            <!-- 1. Live Price Card -->
+            <div class="price-card" style="height: fit-content;">
+                <div class="price-card-header">
+                    <h2 class="price-card-title">🥇 سعر الذهب (24 قيراط)</h2>
+                    <span class="price-card-badge">مباشر</span>
+                </div>
+                <div class="price-value">
+                    <span id="goldPrice">--,-- €</span>
+                    <span class="price-unit">/ جرام</span>
+                </div>
+                <div class="price-usd-row">
+                    <span class="usd-label">بالدولار:</span>
+                    <span id="goldPriceUsd" class="usd-value">--,-- $</span>
+                </div>
+                <div class="price-change up" id="goldChange">--%</div>
+            </div>
+
+            <!-- 2. Interactive Calculator -->
+            <div class="card p-6" id="goldCalcForm">
+                <!-- Calculator Injected by JS -->
+            </div>
+        </div>
+
+        <!-- Karat Grid -->
+        <h2 class="section-title text-center mb-8">أسعار الذهب حسب العيار</h2>
+        <div class="karat-grid-boxes mb-16">
+             <div class="karat-box">
+                <div class="k-label">24 قيراط</div>
+                <div class="k-purity">999 نقي</div>
+                <div class="k-price" id="24kPrice">-- €</div>
+                <div class="k-price-usd" id="24kPriceUsd">-- $</div>
+             </div>
+             <div class="karat-box">
+                <div class="k-label">22 قيراط</div>
+                <div class="k-purity">916 ذهب</div>
+                <div class="k-price" id="22kPrice">-- €</div>
+                <div class="k-price-usd" id="22kPriceUsd">-- $</div>
+             </div>
+             <div class="karat-box">
+                <div class="k-label">21 قيراط</div>
+                <div class="k-purity">875 ذهب</div>
+                <div class="k-price" id="21kPrice">-- €</div>
+                <div class="k-price-usd" id="21kPriceUsd">-- $</div>
+             </div>
+             <div class="karat-box">
+                <div class="k-label">18 قيراط</div>
+                <div class="k-purity">750 ذهب</div>
+                <div class="k-price" id="18kPrice">-- €</div>
+                <div class="k-price-usd" id="18kPriceUsd">-- $</div>
+             </div>
+             <div class="karat-box">
+                <div class="k-label">14 قيراط</div>
+                <div class="k-purity">585 ذهب</div>
+                <div class="k-price" id="14kPrice">-- €</div>
+                <div class="k-price-usd" id="14kPriceUsd">-- $</div>
+             </div>
+        </div>
+
+        <!-- NEW: Weight Box Grid -->
+        <h2 class="section-title text-center mb-8">أسعار الذهب والسبائك حسب الوزن</h2>
+        <div class="karat-grid-boxes mb-16">
+             <div class="karat-box highlight">
+                <div class="k-label">أونصة</div>
+                <div class="k-purity">31.1 جرام</div>
+                <div class="k-price" id="goldOzPrice">-- €</div>
+                <div class="k-price-usd" id="goldOzPriceUsd">-- $</div>
+             </div>
+             <div class="karat-box">
+                <div class="k-label">10 جرام</div>
+                <div class="k-purity">سبيكة</div>
+                <div class="k-price" id="gold10gPrice">-- €</div>
+                <div class="k-price-usd" id="gold10gPriceUsd">-- $</div>
+             </div>
+             <div class="karat-box">
+                <div class="k-label">20 جرام</div>
+                <div class="k-purity">سبيكة</div>
+                <div class="k-price" id="gold20gPrice">-- €</div>
+                <div class="k-price-usd" id="gold20gPriceUsd">-- $</div>
+             </div>
+             <div class="karat-box">
+                <div class="k-label">50 جرام</div>
+                <div class="k-purity">سبيكة</div>
+                <div class="k-price" id="gold50gPrice">-- €</div>
+                <div class="k-price-usd" id="gold50gPriceUsd">-- $</div>
+             </div>
+             <div class="karat-box">
+                <div class="k-label">100 جرام</div>
+                <div class="k-purity">سبيكة</div>
+                <div class="k-price" id="gold100gPrice">-- €</div>
+                <div class="k-price-usd" id="gold100gPriceUsd">-- $</div>
+             </div>
+        </div>
+
+        <!-- Comparison Table -->
+        <h2 class="section-title text-center mb-6">جدول أسعار الذهب اليوم</h2>
+        <div class="table-container mb-16">
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>العيار</th>
+                        <th>النقاء</th>
+                        <th>السعر (يورو) / جرام</th>
+                        <th>السعر (دولار) / جرام</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>24 قيراط</strong></td>
+                        <td>999.9 (ذهب خالص)</td>
+                        <td id="24kPriceTable" class="table-price">-- €</td>
+                        <td id="24kPriceTableUsd" class="table-usd">-- $</td>
+                    </tr>
+                    <tr>
+                        <td><strong>22 قيراط</strong></td>
+                        <td>916.6</td>
+                        <td id="22kPriceTable" class="table-price">-- €</td>
+                        <td id="22kPriceTableUsd" class="table-usd">-- $</td>
+                    </tr>
+                    <tr>
+                        <td><strong>21 قيراط</strong></td>
+                        <td>875.0</td>
+                        <td id="21kPriceTable" class="table-price">-- €</td>
+                        <td id="21kPriceTableUsd" class="table-usd">-- $</td>
+                    </tr>
+                    <tr>
+                        <td><strong>18 قيراط</strong></td>
+                        <td>750.0</td>
+                        <td id="18kPriceTable" class="table-price">-- €</td>
+                        <td id="18kPriceTableUsd" class="table-usd">-- $</td>
+                    </tr>
+                     <tr>
+                        <td><strong>14 قيراط</strong></td>
+                        <td>585.0</td>
+                        <td id="14kPriceTable" class="table-price">-- €</td>
+                        <td id="14kPriceTableUsd" class="table-usd">-- $</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- 5. Market Info Standards -->
+        <h2 class="section-title mb-6">🔍 معايير الذهب والأسواق</h2>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
+            <div class="info-card">
+                <h3 class="text-xl font-bold mb-4" style="color: var(--color-gold);">دليل نقاء الذهب</h3>
+                <div class="purity-list">
+                    <div class="purity-item mb-4">
+                        <div class="flex justify-between mb-1"><span class="font-bold">24 قيراط</span><span class="text-sm">ذهب خالص</span></div>
+                        <div class="w-full bg-gray-200 rounded-full h-3 dark:bg-gray-700">
+                            <div class="h-3 rounded-full" style="width: 100%; background: linear-gradient(90deg, #FFD700, #FDB931);"></div>
+                        </div>
+                    </div>
+                    <div class="purity-item mb-4">
+                        <div class="flex justify-between mb-1"><span class="font-bold">22 قيراط</span><span class="text-sm">استثمار / مجوهرات</span></div>
+                        <div class="w-full bg-gray-200 rounded-full h-3 dark:bg-gray-700">
+                            <div class="h-3 rounded-full" style="width: 91.6%; background: linear-gradient(90deg, #FFD700, #FDB931);"></div>
+                        </div>
+                    </div>
+                    <div class="purity-item mb-4">
+                        <div class="flex justify-between mb-1"><span class="font-bold">21 قيراط</span><span class="text-sm">الأكثر شعبية</span></div>
+                        <div class="w-full bg-gray-200 rounded-full h-3 dark:bg-gray-700">
+                            <div class="h-3 rounded-full" style="width: 87.5%; background: linear-gradient(90deg, #FFD700, #FDB931);"></div>
+                        </div>
+                    </div>
+                    <div class="purity-item">
+                        <div class="flex justify-between mb-1"><span class="font-bold">18 قيراط</span><span class="text-sm">ذهب المجوهرات العالمي</span></div>
+                        <div class="w-full bg-gray-200 rounded-full h-3 dark:bg-gray-700">
+                            <div class="h-3 rounded-full" style="width: 75%; background: linear-gradient(90deg, #FFD700, #FDB931);"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="info-card">
+                 <h3 class="text-xl font-bold mb-4" style="color: var(--text-primary);">🌍 ساعات التداول العالمية</h3>
+                 <div class="market-list">
+                    <div class="flex justify-between items-center py-3 border-b border-gray-200 dark:border-gray-700">
+                        <span class="font-bold">🇬🇧 لندن (LBMA)</span>
+                        <span>08:00 - 16:30 GMT</span>
+                    </div>
+                    <div class="flex justify-between items-center py-3 border-b border-gray-200 dark:border-gray-700">
+                        <span class="font-bold">🇺🇸 نيويورك (COMEX)</span>
+                        <span>08:20 - 13:30 ET</span>
+                    </div>
+                    <div class="flex justify-between items-center py-3 border-b border-gray-200 dark:border-gray-700">
+                        <span class="font-bold">🇦🇪 دبي (DGCX)</span>
+                        <span>07:00 - 23:30 GST</span>
+                    </div>
+                    <div class="flex justify-between items-center py-3">
+                        <span class="font-bold">🇨🇭 زيورخ</span>
+                        <span>08:00 - 17:00 CET</span>
+                    </div>
+                 </div>
+            </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <a href="index.html" class="logo">
+              <div class="logo-icon">Au</div>
+              <span>سعر الذهب مباشر أوروبا</span>
+            </a>
+            <p class="footer-desc">
+              مصدرك الموثوق لأسعار الذهب والفضة المباشرة في أوروبا والعالم.
+            </p>
+          </div>
+
+          <div>
+            <h4 class="footer-title">روابط سريعة</h4>
+            <div class="footer-links">
+              <a href="gold-price.html" class="footer-link">سعر الذهب</a>
+              <a href="silver-price.html" class="footer-link">سعر الفضة</a>
+              <a href="calculator.html" class="footer-link">الحاسبة</a>
+              <a href="news.html" class="footer-link">الأخبار</a>
+            </div>
+          </div>
+
+          <div>
+            <h4 class="footer-title">معلومات</h4>
+            <div class="footer-links">
+              <a href="about.html" class="footer-link">من نحن</a>
+              <a href="blog.html" class="footer-link">المدونة</a>
+              <a href="contact.html" class="footer-link">اتصل بنا</a>
+            </div>
+          </div>
+
+          <div>
+            <h4 class="footer-title">قانوني</h4>
+            <div class="footer-links">
+              <a href="privacy.html" class="footer-link">سياسة الخصوصية</a>
+              <a href="terms.html" class="footer-link">الشروط والأحكام</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p class="footer-copyright">
+            © 2026 سعر الذهب مباشر أوروبا. جميع الحقوق محفوظة.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+  <script src="../js/api.js"></script>
+  <script src="../js/translations.js"></script>
+  <script src="../js/i18n.js"></script>
+  <script src="../js/calculator.js"></script>
+  <script src="../js/cookie-consent.js"></script>
+  <script src="../js/app.js"></script>
+</body>
+</html>

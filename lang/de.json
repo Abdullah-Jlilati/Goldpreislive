@@ -1,0 +1,78 @@
+{
+  "meta": {
+    "lang": "de",
+    "dir": "ltr",
+    "title": "Goldpreis Live - Gold- und Silberpreise Deutschland",
+    "description": "Aktuelle Gold- und Silberpreise in Deutschland. Live-Kurse für 24K, 22K, 21K, 18K, 14K Gold.",
+    "keywords": "Goldpreis, Silberpreis, Gold kaufen, Deutschland"
+  },
+  "nav": {
+    "home": "Startseite",
+    "gold": "Goldpreis",
+    "silver": "Silberpreis",
+    "calculator": "Rechner",
+    "news": "Nachrichten",
+    "blog": "Blog",
+    "about": "Über uns",
+    "contact": "Kontakt",
+    "privacy": "Datenschutz",
+    "terms": "AGB"
+  },
+  "header": { "logo": "Goldpreis Live" },
+  "hero": {
+    "title": "Aktuelle Gold- und Silberpreise",
+    "subtitle": "Live-Kurse in Deutschland - aktualisiert alle 60 Sekunden"
+  },
+  "prices": {
+    "gold": "Gold",
+    "silver": "Silber",
+    "perGram": "pro Gramm",
+    "lastUpdate": "Letzte Aktualisierung",
+    "refresh": "Aktualisieren"
+  },
+  "karats": {
+    "24k": { "name": "24 Karat", "purity": "999,9 Feingold" },
+    "22k": { "name": "22 Karat", "purity": "916,6 Gold" },
+    "21k": { "name": "21 Karat", "purity": "875,0 Gold" },
+    "18k": { "name": "18 Karat", "purity": "750,0 Gold" },
+    "14k": { "name": "14 Karat", "purity": "585,0 Gold" }
+  },
+  "calculator": {
+    "title": "Währungsrechner",
+    "amount": "Betrag",
+    "from": "Von",
+    "to": "Nach",
+    "convert": "Umrechnen",
+    "result": "Ergebnis"
+  },
+  "chart": {
+    "title": "Preisentwicklung",
+    "goldPrice": "Goldpreis",
+    "silverPrice": "Silberpreis"
+  },
+  "news": { "title": "Gold Nachrichten", "readMore": "Weiterlesen" },
+  "blog": { "title": "Blog", "readMore": "Artikel lesen" },
+  "about": { "title": "Über uns" },
+  "contact": {
+    "title": "Kontakt",
+    "form": {
+      "name": "Name",
+      "email": "E-Mail",
+      "message": "Nachricht",
+      "send": "Senden"
+    }
+  },
+  "privacy": { "title": "Datenschutzerklärung" },
+  "terms": { "title": "AGB" },
+  "cookie": {
+    "title": "Cookie-Einstellungen",
+    "message": "Wir verwenden Cookies. Mehr in unserer Datenschutzerklärung.",
+    "accept": "Akzeptieren",
+    "decline": "Ablehnen"
+  },
+  "footer": {
+    "description": "Zuverlässige Gold- und Silberpreise in Deutschland.",
+    "copyright": "© 2026 Goldpreis Live. Alle Rechte vorbehalten."
+  },
+  "common": { "eur": "EUR", "usd": "USD", "gram": "g" }
+}

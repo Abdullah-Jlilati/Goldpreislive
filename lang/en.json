@@ -1,0 +1,78 @@
+{
+  "meta": {
+    "lang": "en",
+    "dir": "ltr",
+    "title": "Gold Price Live - Gold and Silver Prices Europe",
+    "description": "Live gold and silver prices in Europe. Real-time rates for 24K, 22K, 21K, 18K, 14K gold.",
+    "keywords": "gold price, silver price, buy gold, Europe, Germany"
+  },
+  "nav": {
+    "home": "Home",
+    "gold": "Gold Price",
+    "silver": "Silver Price",
+    "calculator": "Calculator",
+    "news": "News",
+    "blog": "Blog",
+    "about": "About Us",
+    "contact": "Contact",
+    "privacy": "Privacy Policy",
+    "terms": "Terms"
+  },
+  "header": { "logo": "Gold Price Live" },
+  "hero": {
+    "title": "Live Gold and Silver Prices",
+    "subtitle": "Real-time prices in Europe - updated every 60 seconds"
+  },
+  "prices": {
+    "gold": "Gold",
+    "silver": "Silver",
+    "perGram": "per gram",
+    "lastUpdate": "Last update",
+    "refresh": "Refresh"
+  },
+  "karats": {
+    "24k": { "name": "24 Karat", "purity": "999.9 Fine Gold" },
+    "22k": { "name": "22 Karat", "purity": "916.6 Gold" },
+    "21k": { "name": "21 Karat", "purity": "875.0 Gold" },
+    "18k": { "name": "18 Karat", "purity": "750.0 Gold" },
+    "14k": { "name": "14 Karat", "purity": "585.0 Gold" }
+  },
+  "calculator": {
+    "title": "Currency Calculator",
+    "amount": "Amount",
+    "from": "From",
+    "to": "To",
+    "convert": "Convert",
+    "result": "Result"
+  },
+  "chart": {
+    "title": "Price History",
+    "goldPrice": "Gold Price",
+    "silverPrice": "Silver Price"
+  },
+  "news": { "title": "Gold News", "readMore": "Read More" },
+  "blog": { "title": "Blog", "readMore": "Read Article" },
+  "about": { "title": "About Us" },
+  "contact": {
+    "title": "Contact",
+    "form": {
+      "name": "Name",
+      "email": "Email",
+      "message": "Message",
+      "send": "Send"
+    }
+  },
+  "privacy": { "title": "Privacy Policy" },
+  "terms": { "title": "Terms & Conditions" },
+  "cookie": {
+    "title": "Cookie Settings",
+    "message": "We use cookies. Learn more in our Privacy Policy.",
+    "accept": "Accept",
+    "decline": "Decline"
+  },
+  "footer": {
+    "description": "Reliable gold and silver prices in Europe.",
+    "copyright": "© 2026 Gold Price Live. All rights reserved."
+  },
+  "common": { "eur": "EUR", "usd": "USD", "gram": "g" }
+}
