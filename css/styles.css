@@ -2313,3 +2313,31 @@ input[type='number'],
   }
 }
 
+
+/* ----------------------------------------
+   FIX HEADER LOGO ON MOBILE (REVISED)
+   ---------------------------------------- */
+@media (max-width: 600px) {
+  /* REVEAL TEXT */
+  .logo span {
+    display: inline-block !important;
+    font-size: 0.85rem; /* Adjust size to fit */
+    white-space: nowrap;
+  }
+  
+  /* HIDE ICON 'Au' */
+  .logo-icon {
+    display: none !important;
+  }
+  
+  /* Adjust layout to maximize space for text */
+  .logo {
+    margin-right: auto; /* Push text to start */
+    gap: 0;
+  }
+  [dir='rtl'] .logo {
+      margin-right: 0;
+      margin-left: auto;
+  }
+}
+
