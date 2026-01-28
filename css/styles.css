@@ -2203,3 +2203,26 @@ input[type='number'],
     -webkit-text-fill-color: transparent;
 }
 
+
+/* ----------------------------------------
+   FIXES FOR SILVER COLORS & DOLLAR
+   ---------------------------------------- */
+
+/* 1. Make USD in Silver Calculator Silver/Grey */
+.calc-result-box.silver .c-res-sub {
+    color: #718096 !important; 
+    text-shadow: none !important;
+}
+
+[data-theme='dark'] .calc-result-box.silver .c-res-sub {
+    color: #CBD5E0 !important;
+}
+
+/* 2. Fix 'Gram' unit color (remove gold gradient inheritance) */
+.price-unit {
+    -webkit-text-fill-color: var(--text-muted) !important;
+    background: none !important;
+    color: var(--text-muted) !important; /* Silver/Grey appearance */
+    font-weight: 500;
+}
+
