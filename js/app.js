@@ -50,8 +50,21 @@ const App = {
     
     // Inject Mobile Menu (Hamburger) & Drawer
     this.injectMobileMenu();
+    
+    // Set Page Theme Class (Gold/Silver/Etc)
+    this.setPageThemeClass();
 
     console.log("Goldpreis Live - Ready!");
+  },
+
+  setPageThemeClass() {
+    const path = window.location.pathname.toLowerCase();
+    if (path.includes('silver') || path.includes('silber')) {
+        document.body.classList.add('page-silver');
+    } else {
+        // Default to gold for index and gold pages, or mixed
+        document.body.classList.add('page-gold');
+    }
   },
   
   /**

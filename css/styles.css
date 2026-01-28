@@ -2218,11 +2218,24 @@ input[type='number'],
     color: #CBD5E0 !important;
 }
 
-/* 2. Fix 'Gram' unit color (remove gold gradient inheritance) */
-.price-unit {
-    -webkit-text-fill-color: var(--text-muted) !important;
+/* 2. Fix 'Gram' unit color based on Page Context */
+.page-gold .price-unit {
+    color: var(--color-gold) !important;
+    -webkit-text-fill-color: var(--color-gold) !important;
     background: none !important;
-    color: var(--text-muted) !important; /* Silver/Grey appearance */
     font-weight: 500;
 }
+
+.page-silver .price-unit {
+    color: #718096 !important; /* Silver/Cool Gray */
+    -webkit-text-fill-color: #718096 !important;
+    background: none !important;
+    font-weight: 500;
+}
+
+[data-theme='dark'].page-silver .price-unit {
+    color: #A0AEC0 !important;
+    -webkit-text-fill-color: #A0AEC0 !important;
+}
+
 
