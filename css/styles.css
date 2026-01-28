@@ -2291,3 +2291,25 @@ input[type='number'],
   }
 }
 
+
+/* ----------------------------------------
+   FIX HEADER LOGO ON MOBILE
+   ---------------------------------------- */
+@media (max-width: 600px) {
+  /* Hide the text 'Goldpreis Live' or Arabic equivalent on mobile 
+     to prevent overlapping with lang switchers */
+  .logo span {
+    display: none;
+  }
+  
+  /* Ensure the icon 'Au' is visible and aligned */
+  .logo {
+    gap: 0; 
+  }
+  
+  /* Adjust header padding if needed */
+  .header-inner {
+      gap: 10px;
+  }
+}
+
