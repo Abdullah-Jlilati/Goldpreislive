@@ -2239,3 +2239,21 @@ input[type='number'],
 }
 
 
+
+/* ----------------------------------------
+   FIX TABLE ALIGNMENT ARABIC
+   ---------------------------------------- */
+[lang='ar'] .comparison-table th,
+[lang='ar'] .comparison-table td {
+    text-align: right !important;
+}
+
+/* Ensure table prices align right even if they are LTR numbers */
+[lang='ar'] .table-price,
+[lang='ar'] .table-usd,
+[lang='ar'] .comparison-table td[id*='Price'] {
+    text-align: right !important;
+    /* direction: ltr is inherited from global rule for numbers, 
+       but text-align needs to be forced to right for the cell content */
+}
+
