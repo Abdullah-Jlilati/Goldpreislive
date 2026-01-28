@@ -2257,3 +2257,37 @@ input[type='number'],
        but text-align needs to be forced to right for the cell content */
 }
 
+
+/* ----------------------------------------
+   FIX MOBILE TITLES (Overflowing Text)
+   ---------------------------------------- */
+@media (max-width: 768px) {
+  .page-title, 
+  .hero-title {
+    font-size: 1.75rem !important; /* Smaller font for mobile (approx var(--text-2xl)) */
+    padding-left: 15px;
+    padding-right: 15px;
+    line-height: 1.3;
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+  
+  .page-subtitle,
+  .hero-subtitle {
+     font-size: 1rem !important;
+     padding-left: 15px;
+     padding-right: 15px;
+  }
+  
+  .page-header {
+      padding-top: 2rem !important;
+      padding-bottom: 2rem !important;
+  }
+  
+  /* Fix container padding on mobile if needed */
+  .container {
+      padding-left: 1rem;
+      padding-right: 1rem;
+  }
+}
+
