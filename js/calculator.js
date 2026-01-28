@@ -49,6 +49,12 @@ const Calculator = {
     currAmount: null, 
     currencyGoldKarat: '24k',
     
+    // NEW: Multi-Karat Gold Calculator State
+    multiKaratItems: [],
+    
+    // NEW: Multi-Currency Calculator State
+    multiCurrencyItems: [],
+    
     init() {
         this.render();
         this.bindEvents();
@@ -107,22 +113,127 @@ const Calculator = {
         const lang = document.documentElement.lang || 'de';
         return {
             de: {
-                tabs: { gold: 'Gold Rechner', silver: 'Silber Rechner', currency: 'Währungsrechner' },
-                labels: { weight: 'Gewicht (Gramm)', purity: 'Feinheit / Karat', amount: 'Betrag', result: 'Ergebnis', convert: 'Umrechnen' },
-                purities: { '24k': '24K (999)', '22k': '22K (916)', '21k': '21K (875)', '18k': '18K (750)', '14k': '14K (585)', '999': 'Feinsilber 999', '925': 'Sterling 925', '800': 'Silber 800' },
-                curr: { from: 'Von', to: 'Nach', goldPower: 'Gold Kaufkraft' }
+                tabs: { 
+                    gold: 'Gold Rechner', 
+                    silver: 'Silber Rechner', 
+                    currency: 'Währungsrechner',
+                    multiKarat: 'Multi-Karat Gold',
+                    multiCurrency: 'Multi-Währung'
+                },
+                labels: { 
+                    weight: 'Gewicht (Gramm)', 
+                    purity: 'Feinheit / Karat', 
+                    amount: 'Betrag', 
+                    result: 'Ergebnis', 
+                    convert: 'Umrechnen',
+                    add: 'Hinzufügen',
+                    calculate: 'Berechnen',
+                    totalValue: 'Gesamtwert',
+                    equivalentIn: 'Entspricht',
+                    priceInEur: 'Preis in Euro',
+                    priceInUsd: 'Preis in US-Dollar',
+                    addItem: 'Element hinzufügen',
+                    remove: 'Entfernen',
+                    karat: 'Karat'
+                },
+                purities: { 
+                    '24k': '24K (999)', 
+                    '22k': '22K (916)', 
+                    '21k': '21K (875)', 
+                    '18k': '18K (750)', 
+                    '14k': '14K (585)', 
+                    '999': 'Feinsilber 999', 
+                    '925': 'Sterling 925', 
+                    '800': 'Silber 800' 
+                },
+                curr: { 
+                    from: 'Von', 
+                    to: 'Nach', 
+                    goldPower: 'Gold Kaufkraft',
+                    currency: 'Währung'
+                }
             },
             ar: {
-                tabs: { gold: 'حاسبة الذهب', silver: 'حاسبة الفضة', currency: 'محول العملات' },
-                labels: { weight: 'الوزن (جرام)', purity: 'القيراط / النقاء', amount: 'المبلغ', result: 'النتيجة', convert: 'تحويل' },
-                purities: { '24k': '24 قيراط', '22k': '22 قيراط', '21k': '21 قيراط', '18k': '18 قيراط', '14k': '14 قيراط', '999': 'فضة نقية 999', '925': 'استرليني 925', '800': 'فضة 800' },
-                curr: { from: 'من', to: 'إلى', goldPower: 'قدرة شراء الذهب' }
+                tabs: { 
+                    gold: 'حاسبة الذهب', 
+                    silver: 'حاسبة الفضة', 
+                    currency: 'محول العملات',
+                    multiKarat: 'ذهب متعدد العيارات',
+                    multiCurrency: 'عملات متعددة'
+                },
+                labels: { 
+                    weight: 'الوزن (جرام)', 
+                    purity: 'القيراط / النقاء', 
+                    amount: 'المبلغ', 
+                    result: 'النتيجة', 
+                    convert: 'تحويل',
+                    add: 'إضافة',
+                    calculate: 'حساب',
+                    totalValue: 'القيمة الإجمالية',
+                    equivalentIn: 'يعادل',
+                    priceInEur: 'السعر باليورو',
+                    priceInUsd: 'السعر بالدولار الأمريكي',
+                    addItem: 'إضافة عنصر',
+                    remove: 'حذف',
+                    karat: 'القيراط'
+                },
+                purities: { 
+                    '24k': '24 قيراط', 
+                    '22k': '22 قيراط', 
+                    '21k': '21 قيراط', 
+                    '18k': '18 قيراط', 
+                    '14k': '14 قيراط', 
+                    '999': 'فضة نقية 999', 
+                    '925': 'استرليني 925', 
+                    '800': 'فضة 800' 
+                },
+                curr: { 
+                    from: 'من', 
+                    to: 'إلى', 
+                    goldPower: 'قدرة شراء الذهب',
+                    currency: 'العملة'
+                }
             },
             en: {
-                tabs: { gold: 'Gold Calc', silver: 'Silver Calc', currency: 'Currency Conv' },
-                labels: { weight: 'Weight', purity: 'Purity', amount: 'Amount', result: 'Result', convert: 'Convert' },
-                purities: { '24k': '24K (999)', '22k': '22K (916)', '21k': '21K (875)', '18k': '18K (750)', '14k': '14K (585)', '999': 'Fine Silver 999', '925': 'Sterling 925', '800': 'Silver 800' },
-                curr: { from: 'From', to: 'To', goldPower: 'Gold Purchasing Power' }
+                tabs: { 
+                    gold: 'Gold Calc', 
+                    silver: 'Silver Calc', 
+                    currency: 'Currency Conv',
+                    multiKarat: 'Multi-Karat Gold',
+                    multiCurrency: 'Multi-Currency'
+                },
+                labels: { 
+                    weight: 'Weight (grams)', 
+                    purity: 'Purity / Karat', 
+                    amount: 'Amount', 
+                    result: 'Result', 
+                    convert: 'Convert',
+                    add: 'Add',
+                    calculate: 'Calculate',
+                    totalValue: 'Total Value',
+                    equivalentIn: 'Equivalent in',
+                    priceInEur: 'Price in Euro',
+                    priceInUsd: 'Price in US Dollar',
+                    addItem: 'Add Item',
+                    remove: 'Remove',
+                    karat: 'Karat'
+                },
+                purities: { 
+                    '24k': '24K (999)', 
+                    '22k': '22K (916)', 
+                    '21k': '21K (875)', 
+                    '18k': '18K (750)', 
+                    '14k': '14K (585)', 
+                    '999': 'Fine Silver 999', 
+                    '925': 'Sterling 925', 
+                    '800': 'Silver 800' 
+                },
+                curr: { 
+                    from: 'From', 
+                    to: 'To', 
+                    goldPower: 'Gold Purchasing Power',
+                    currency: 'Currency'
+                }
             }
         }[lang] || {};
     },
@@ -136,12 +247,16 @@ const Calculator = {
                 <div class="calc-tabs">
                     <button class="c-tab ${this.activeTab === 'gold' ? 'active' : ''}" data-tab="gold">🥇 ${safeT(t.tabs?.gold)}</button>
                     <button class="c-tab ${this.activeTab === 'silver' ? 'active' : ''}" data-tab="silver">🥈 ${safeT(t.tabs?.silver)}</button>
+                    <button class="c-tab ${this.activeTab === 'multiKarat' ? 'active' : ''}" data-tab="multiKarat">💎 ${safeT(t.tabs?.multiKarat)}</button>
                     <button class="c-tab ${this.activeTab === 'currency' ? 'active' : ''}" data-tab="currency">💱 ${safeT(t.tabs?.currency)}</button>
+                    <button class="c-tab ${this.activeTab === 'multiCurrency' ? 'active' : ''}" data-tab="multiCurrency">💰 ${safeT(t.tabs?.multiCurrency)}</button>
                 </div>
                 <div class="calc-body">
                     ${this.activeTab === 'gold' ? this.getGoldTemplate(t) : ''}
                     ${this.activeTab === 'silver' ? this.getSilverTemplate(t) : ''}
+                    ${this.activeTab === 'multiKarat' ? this.getMultiKaratTemplate(t) : ''}
                     ${this.activeTab === 'currency' ? this.getCurrencyTemplate(t) : ''}
+                    ${this.activeTab === 'multiCurrency' ? this.getMultiCurrencyTemplate(t) : ''}
                 </div>
             </div>
             ${this.getStyles()}
@@ -187,8 +302,14 @@ const Calculator = {
             </div>
             <div class="calc-result-box">
                 <div class="c-res-label">${t.labels.result}</div>
-                <div class="c-res-main" id="res-gold-eur">€0.00</div>
-                <div class="c-res-sub" id="res-gold-usd">$0.00</div>
+                <div class="c-res-row">
+                    <span class="c-currency-label">EUR</span>
+                    <div class="c-res-main" id="res-gold-eur">€0.00</div>
+                </div>
+                <div class="c-res-row">
+                    <span class="c-currency-label">USD</span>
+                    <div class="c-res-sub" id="res-gold-usd">$0.00</div>
+                </div>
             </div>
         `;
     },
@@ -210,8 +331,14 @@ const Calculator = {
             </div>
             <div class="calc-result-box silver">
                 <div class="c-res-label">${t.labels.result}</div>
-                <div class="c-res-main" id="res-silver-eur">€0.00</div>
-                <div class="c-res-sub" id="res-silver-usd">$0.00</div>
+                <div class="c-res-row">
+                    <span class="c-currency-label">EUR</span>
+                    <div class="c-res-main" id="res-silver-eur">€0.00</div>
+                </div>
+                <div class="c-res-row">
+                    <span class="c-currency-label">USD</span>
+                    <div class="c-res-sub" id="res-silver-usd">$0.00</div>
+                </div>
             </div>
         `;
     },
@@ -300,6 +427,7 @@ const Calculator = {
     refreshCalculations() {
         if (this.activeTab === 'gold') this.calcGold();
         if (this.activeTab === 'silver') this.calcSilver();
+        if (this.activeTab === 'multiKarat') { /* Multi-karat needs manual calc button */ }
         if (this.activeTab === 'currency') {
             const selFrom = document.getElementById('sel-curr-from');
             const selTo = document.getElementById('sel-curr-to');
@@ -307,6 +435,7 @@ const Calculator = {
             if(selTo) selTo.value = this.currTo;
             this.calcCurrency();
         }
+        if (this.activeTab === 'multiCurrency') { /* Multi-currency needs manual calc button */ }
     },
 
     calcGold() {
@@ -408,9 +537,11 @@ const Calculator = {
                 
                 .calc-result-box { background: var(--bg-secondary); padding: 20px; border-radius: 12px; text-align: center; margin-top: 10px; border: 1px solid var(--border-color); }
                 .calc-result-box.silver { border-top: 4px solid #C0C0C0; }
-                .c-res-label { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); margin-bottom: 5px; }
+                .c-res-label { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); margin-bottom: 10px; }
+                .c-res-row { display: flex; align-items: center; justify-content: center; gap: 10px; margin: 8px 0; }
+                .c-currency-label { font-size: 0.75rem; font-weight: 600; color: var(--text-muted); background: rgba(212, 175, 55, 0.1); padding: 4px 8px; border-radius: 4px; min-width: 40px; text-align: center; }
                 .c-res-main { font-size: 2rem; font-weight: 800; color: var(--color-gold); font-family: var(--font-mono); }
-                .c-res-sub { font-size: 1rem; color: var(--text-secondary); margin-top: 5px; }
+                .c-res-sub { font-size: 2rem; font-weight: 800; color: var(--color-gold); font-family: var(--font-mono); }
                 
                 /* Currency Specific Styles */
                 .curr-container { max-width: 600px; margin: 0 auto; }
@@ -438,8 +569,244 @@ const Calculator = {
                 .gp-chip { background: transparent; border: 1px solid var(--color-gold); color: var(--color-gold); padding: 4px 10px; border-radius: 15px; font-size: 0.8rem; cursor: pointer; transition: 0.2s; opacity: 0.6; }
                 .gp-chip:hover { opacity: 1; background: rgba(255, 215, 0, 0.1); }
                 .gp-chip.active { background: var(--color-gold); color: #000; opacity: 1; font-weight: bold; }
+                
+                /* Multi-Karat & Multi-Currency Styles */
+                .multi-item { background: var(--bg-secondary); padding: 12px; border-radius: 8px; margin-bottom: 10px; display: flex; gap: 10px; align-items: center; border: 1px solid var(--border-color); }
+                .multi-item input, .multi-item select { flex: 1; min-width: 80px; }
+                .multi-item button { flex-shrink: 0; background: #dc2626; color: white; border: none; padding: 8px 12px; border-radius: 6px; cursor: pointer; font-size: 0.85rem; }
+                .multi-item button:hover { background: #b91c1c; }
+                .multi-add-btn { width: 100%; background: var(--color-gold); color: #000; font-weight: 600; padding: 10px; border: none; border-radius: 8px; cursor: pointer; margin-bottom: 15px; }
+                .multi-add-btn:hover { opacity: 0.9; }
+                .multi-calc-btn { width: 100%; background: linear-gradient(135deg, #D4AF37, #B8860B); color: #000; font-weight: 700; padding: 14px; border: none; border-radius: 8px; cursor: pointer; margin-bottom: 15px; font-size: 1.05rem; }
+                .multi-calc-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3); }
+                .equivalents-box { background: rgba(212, 175, 55, 0.05); border: 1px solid rgba(212, 175, 55, 0.2); border-radius: 12px; padding: 15px; margin-top: 15px; }
+                .equiv-item { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--border-color); }
+                .equiv-item:last-child { border-bottom: none; }
+                .equiv-label { font-weight: 600; color: var(--text-secondary); }
+                .equiv-value { font-family: var(--font-mono); color: var(--color-gold); font-weight: 700; }
             </style>
         `;
+    },
+    
+    // NEW: Multi-Karat Gold Template
+    getMultiKaratTemplate(t) {
+        return `
+            <div class="multi-karat-container">
+                <div id="multi-karat-items">
+                    ${this.multiKaratItems.map((item, idx) => `
+                        <div class="multi-item" data-index="${idx}">
+                            <input type="number" 
+                                   class="c-input" 
+                                   value="${item.weight > 0 ? item.weight : ''}" 
+                                   placeholder="${t.labels.weight}" 
+                                   onchange="Calculator.updateMultiKaratItem(${idx}, 'weight', this.value)">
+                            <select class="c-select" 
+                                    onchange="Calculator.updateMultiKaratItem(${idx}, 'karat', this.value)">
+                                ${['24k', '22k', '21k', '18k', '14k'].map(k => 
+                                    `<option value="${k}" ${item.karat === k ? 'selected' : ''}>${t.purities[k]}</option>`
+                                ).join('')}
+                            </select>
+                            <button onclick="Calculator.removeMultiKaratItem(${idx})">${t.labels.remove}</button>
+                        </div>
+                    `).join('')}
+                </div>
+                
+                <button class="multi-add-btn" onclick="Calculator.addMultiKaratItem()">
+                    ➕ ${t.labels.addItem}
+                </button>
+                
+                <button class="multi-calc-btn" onclick="Calculator.calcMultiKarat()">
+                    ${t.labels.calculate}
+                </button>
+                
+                <div class="calc-result-box">
+                    <div class="c-res-label">${t.labels.totalValue}</div>
+                    <div class="c-res-main" id="res-multi-karat-eur">€0.00</div>
+                    <div class="c-res-sub" id="res-multi-karat-usd">$0.00</div>
+                </div>
+                
+                <div class="equivalents-box" id="multi-karat-equivalents" style="display:none;">
+                    <div class="c-res-label">${t.labels.equivalentIn}</div>
+                    <div id="equiv-list"></div>
+                </div>
+            </div>
+        `;
+    },
+    
+    // NEW: Multi-Currency Template
+    getMultiCurrencyTemplate(t) {
+        const renderCurrOpts = () => Object.entries(this.currencies).map(([code, data]) => 
+            `<option value="${code}">${data.flag} ${code}</option>`
+        ).join('');
+        
+        return `
+            <div class="multi-curr-container">
+                <div id="multi-curr-items">
+                    ${this.multiCurrencyItems.map((item, idx) => `
+                        <div class="multi-item" data-index="${idx}">
+                            <input type="number" 
+                                   class="c-input" 
+                                   value="${item.amount > 0 ? item.amount : ''}" 
+                                   placeholder="${t.labels.amount}" 
+                                   onchange="Calculator.updateMultiCurrItem(${idx}, 'amount', this.value)">
+                            <select class="c-select" 
+                                    onchange="Calculator.updateMultiCurrItem(${idx}, 'currency', this.value)">
+                                ${renderCurrOpts()}
+                            </select>
+                            <button onclick="Calculator.removeMultiCurrItem(${idx})">${t.labels.remove}</button>
+                        </div>
+                    `).join('')}
+                </div>
+                
+                <button class="multi-add-btn" onclick="Calculator.addMultiCurrItem()">
+                    ➕ ${t.labels.addItem}
+                </button>
+                
+                <button class="multi-calc-btn" onclick="Calculator.calcMultiCurrency()">
+                    ${t.labels.calculate}
+                </button>
+                
+                <div class="calc-result-box">
+                    <div class="c-res-label">${t.labels.totalValue}</div>
+                    <div class="c-res-main" id="res-multi-curr-total">---</div>
+                </div>
+                
+                <div class="equivalents-box" id="multi-curr-equivalents" style="display:none;">
+                    <div class="c-res-label">${t.labels.equivalentIn}</div>
+                    <div id="curr-equiv-list"></div>
+                </div>
+            </div>
+        `;
+    },
+    
+    // NEW: Multi-Karat Gold Functions
+    addMultiKaratItem() {
+        this.multiKaratItems.push({ weight: 0, karat: '24k' });
+        this.render();
+    },
+    
+    removeMultiKaratItem(idx) {
+        this.multiKaratItems.splice(idx, 1);
+        this.render();
+    },
+    
+    updateMultiKaratItem(idx, field, value) {
+        if (this.multiKaratItems[idx]) {
+            this.multiKaratItems[idx][field] = field === 'weight' ? parseFloat(value) : value;
+        }
+    },
+    
+    calcMultiKarat() {
+        if (!this.goldPricePerGram || this.goldPricePerGram <= 0) {
+            alert('Gold price not yet loaded. Please wait...');
+            return;
+        }
+        
+        let totalValueEur = 0;
+        let total24kEquiv = 0;
+        
+        this.multiKaratItems.forEach(item => {
+            if (item.weight > 0) {
+                const purity = this.karatPurity[item.karat] || 1;
+                const valueEur = item.weight * this.goldPricePerGram * purity;
+                totalValueEur += valueEur;
+                total24kEquiv += item.weight * purity; // Convert to 24k equivalent
+            }
+        });
+        
+        const totalValueUsd = totalValueEur * this.eurUsdRate;
+        
+        // Update results
+        this.updateRes('res-multi-karat-eur', totalValueEur, 'EUR');
+        this.updateRes('res-multi-karat-usd', totalValueUsd, 'USD');
+        
+        // Calculate equivalents in all karats
+        const equivBox = document.getElementById('multi-karat-equivalents');
+        const equivList = document.getElementById('equiv-list');
+        
+        if (equivBox && equivList && total24kEquiv > 0) {
+            const t = this.getTranslations();
+            equivBox.style.display = 'block';
+            
+            const karats = ['24k', '22k', '21k', '18k', '14k'];
+            equivList.innerHTML = karats.map(k => {
+                const purity = this.karatPurity[k];
+                const equivWeight = total24kEquiv / purity;
+                return `
+                    <div class="equiv-item">
+                        <span class="equiv-label">${t.purities[k]}</span>
+                        <span class="equiv-value">${equivWeight.toFixed(2)} g</span>
+                    </div>
+                `;
+            }).join('');
+        }
+    },
+    
+    // NEW: Multi-Currency Functions
+    addMultiCurrItem() {
+        this.multiCurrencyItems.push({ amount: 0, currency: 'EUR' });
+        this.render();
+    },
+    
+    removeMultiCurrItem(idx) {
+        this.multiCurrencyItems.splice(idx, 1);
+        this.render();
+    },
+    
+    updateMultiCurrItem(idx, field, value) {
+        if (this.multiCurrencyItems[idx]) {
+            this.multiCurrencyItems[idx][field] = field === 'amount' ? parseFloat(value) : value;
+        }
+    },
+    
+    calcMultiCurrency() {
+        if (!this.rates) {
+            alert('Currency rates not loaded yet. Please wait...');
+            return;
+        }
+        
+        let totalInUsd = 0;
+        
+        this.multiCurrencyItems.forEach(item => {
+            if (item.amount > 0) {
+                const rate = this.rates[item.currency] || 1;
+                totalInUsd += item.amount / rate;
+            }
+        });
+        
+        // Calculate EUR equivalent
+        const rateEur = this.rates['EUR'] || 0.93;
+        const totalInEur = totalInUsd * rateEur;
+        
+        // Update main result
+        const resEl = document.getElementById('res-multi-curr-total');
+        if (resEl) {
+            resEl.innerHTML = `
+                <div style="font-size: 1.5rem; margin-bottom: 8px">€${totalInEur.toFixed(2)}</div>
+                <div style="font-size: 1.2rem; color: var(--text-secondary)">$${totalInUsd.toFixed(2)}</div>
+            `;
+        }
+        
+        // Show equivalents in major currencies
+        const equivBox = document.getElementById('multi-curr-equivalents');
+        const equivList = document.getElementById('curr-equiv-list');
+        
+        if (equivBox && equivList && totalInUsd > 0) {
+            const t = this.getTranslations();
+            equivBox.style.display = 'block';
+            
+            const majorCurr = ['SAR', 'AED', 'GBP', 'CHF', 'TRY'];
+            equivList.innerHTML = majorCurr.map(curr => {
+                const rate = this.rates[curr] || 1;
+                const amount = totalInUsd * rate;
+                return `
+                    <div class="equiv-item">
+                        <span class="equiv-label">${this.currencies[curr]?.flag} ${curr}</span>
+                        <span class="equiv-value">${amount.toFixed(2)}</span>
+                    </div>
+                `;
+            }).join('');
+        }
     }
 };
 

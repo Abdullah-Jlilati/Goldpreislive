@@ -4,24 +4,24 @@
   
   <!-- Homepage - All Languages -->
   <url>
-    <loc>https://yoursite.com/de/index.html</loc>
+    <loc>https://www.goldpreislive.com/de/index.html</loc>
     <lastmod>2026-01-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="de" href="https://yoursite.com/de/index.html"/>
-    <xhtml:link rel="alternate" hreflang="ar" href="https://yoursite.com/ar/index.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://yoursite.com/en/index.html"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.goldpreislive.com/de/index.html"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.goldpreislive.com/ar/index.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.goldpreislive.com/en/index.html"/>
   </url>
   
   <url>
-    <loc>https://yoursite.com/ar/index.html</loc>
+    <loc>https://www.goldpreislive.com/ar/index.html</loc>
     <lastmod>2026-01-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   
   <url>
-    <loc>https://yoursite.com/en/index.html</loc>
+    <loc>https://www.goldpreislive.com/en/index.html</loc>
     <lastmod>2026-01-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
@@ -29,21 +29,21 @@
 
   <!-- Gold Price Pages -->
   <url>
-    <loc>https://yoursite.com/de/gold-price.html</loc>
+    <loc>https://www.goldpreislive.com/de/gold-price.html</loc>
     <lastmod>2026-01-24</lastmod>
     <changefreq>hourly</changefreq>
     <priority>0.9</priority>
   </url>
   
   <url>
-    <loc>https://yoursite.com/ar/gold-price.html</loc>
+    <loc>https://www.goldpreislive.com/ar/gold-price.html</loc>
     <lastmod>2026-01-24</lastmod>
     <changefreq>hourly</changefreq>
     <priority>0.9</priority>
   </url>
   
   <url>
-    <loc>https://yoursite.com/en/gold-price.html</loc>
+    <loc>https://www.goldpreislive.com/en/gold-price.html</loc>
     <lastmod>2026-01-24</lastmod>
     <changefreq>hourly</changefreq>
     <priority>0.9</priority>
@@ -51,21 +51,21 @@
 
   <!-- Silver Price Pages -->
   <url>
-    <loc>https://yoursite.com/de/silver-price.html</loc>
+    <loc>https://www.goldpreislive.com/de/silver-price.html</loc>
     <lastmod>2026-01-24</lastmod>
     <changefreq>hourly</changefreq>
     <priority>0.9</priority>
   </url>
   
   <url>
-    <loc>https://yoursite.com/ar/silver-price.html</loc>
+    <loc>https://www.goldpreislive.com/ar/silver-price.html</loc>
     <lastmod>2026-01-24</lastmod>
     <changefreq>hourly</changefreq>
     <priority>0.9</priority>
   </url>
   
   <url>
-    <loc>https://yoursite.com/en/silver-price.html</loc>
+    <loc>https://www.goldpreislive.com/en/silver-price.html</loc>
     <lastmod>2026-01-24</lastmod>
     <changefreq>hourly</changefreq>
     <priority>0.9</priority>
@@ -73,21 +73,21 @@
 
   <!-- Calculator Pages -->
   <url>
-    <loc>https://yoursite.com/de/calculator.html</loc>
+    <loc>https://www.goldpreislive.com/de/calculator.html</loc>
     <lastmod>2026-01-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>https://yoursite.com/ar/calculator.html</loc>
+    <loc>https://www.goldpreislive.com/ar/calculator.html</loc>
     <lastmod>2026-01-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>https://yoursite.com/en/calculator.html</loc>
+    <loc>https://www.goldpreislive.com/en/calculator.html</loc>
     <lastmod>2026-01-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
@@ -95,21 +95,21 @@
 
   <!-- News Pages -->
   <url>
-    <loc>https://yoursite.com/de/news.html</loc>
+    <loc>https://www.goldpreislive.com/de/news.html</loc>
     <lastmod>2026-01-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
-    <loc>https://yoursite.com/ar/news.html</loc>
+    <loc>https://www.goldpreislive.com/ar/news.html</loc>
     <lastmod>2026-01-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
-    <loc>https://yoursite.com/en/news.html</loc>
+    <loc>https://www.goldpreislive.com/en/news.html</loc>
     <lastmod>2026-01-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
@@ -117,21 +117,21 @@
 
   <!-- Blog Pages -->
   <url>
-    <loc>https://yoursite.com/de/blog.html</loc>
+    <loc>https://www.goldpreislive.com/de/blog.html</loc>
     <lastmod>2026-01-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
-    <loc>https://yoursite.com/ar/blog.html</loc>
+    <loc>https://www.goldpreislive.com/ar/blog.html</loc>
     <lastmod>2026-01-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
-    <loc>https://yoursite.com/en/blog.html</loc>
+    <loc>https://www.goldpreislive.com/en/blog.html</loc>
     <lastmod>2026-01-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
@@ -139,14 +139,14 @@
 
   <!-- Articles - German -->
   <url>
-    <loc>https://yoursite.com/de/articles/why-invest-in-gold.html</loc>
+    <loc>https://www.goldpreislive.com/de/articles/why-invest-in-gold.html</loc>
     <lastmod>2026-01-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://yoursite.com/de/articles/silver-industrial-demand.html</loc>
+    <loc>https://www.goldpreislive.com/de/articles/silver-industrial-demand.html</loc>
     <lastmod>2026-01-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -154,14 +154,14 @@
 
   <!-- Articles - Arabic -->
   <url>
-    <loc>https://yoursite.com/ar/articles/why-invest-in-gold.html</loc>
+    <loc>https://www.goldpreislive.com/ar/articles/why-invest-in-gold.html</loc>
     <lastmod>2026-01-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://yoursite.com/ar/articles/silver-industrial-demand.html</loc>
+    <loc>https://www.goldpreislive.com/ar/articles/silver-industrial-demand.html</loc>
     <lastmod>2026-01-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -169,14 +169,14 @@
 
   <!-- NEW Blog Articles - German -->
   <url>
-    <loc>https://yoursite.com/de/articles/gold-kaufen-leitfaden-2026.html</loc>
+    <loc>https://www.goldpreislive.com/de/articles/gold-kaufen-leitfaden-2026.html</loc>
     <lastmod>2026-01-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
-    <loc>https://yoursite.com/de/articles/goldkarate-unterschiede.html</loc>
+    <loc>https://www.goldpreislive.com/de/articles/goldkarate-unterschiede.html</loc>
     <lastmod>2026-01-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -184,14 +184,14 @@
 
   <!-- NEW Blog Articles - English -->
   <url>
-    <loc>https://yoursite.com/en/articles/how-to-buy-gold-2026.html</loc>
+    <loc>https://www.goldpreislive.com/en/articles/how-to-buy-gold-2026.html</loc>
     <lastmod>2026-01-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
-    <loc>https://yoursite.com/en/articles/gold-karats-explained.html</loc>
+    <loc>https://www.goldpreislive.com/en/articles/gold-karats-explained.html</loc>
     <lastmod>2026-01-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -199,14 +199,14 @@
 
   <!-- NEW Blog Articles - Arabic -->
   <url>
-    <loc>https://yoursite.com/ar/articles/gold-buying-guide-2026.html</loc>
+    <loc>https://www.goldpreislive.com/ar/articles/gold-buying-guide-2026.html</loc>
     <lastmod>2026-01-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
-    <loc>https://yoursite.com/ar/articles/gold-karats-comparison.html</loc>
+    <loc>https://www.goldpreislive.com/ar/articles/gold-karats-comparison.html</loc>
     <lastmod>2026-01-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -214,14 +214,14 @@
 
   <!-- Articles - English -->
   <url>
-    <loc>https://yoursite.com/en/articles/why-invest-in-gold.html</loc>
+    <loc>https://www.goldpreislive.com/en/articles/why-invest-in-gold.html</loc>
     <lastmod>2026-01-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://yoursite.com/en/articles/silver-industrial-demand.html</loc>
+    <loc>https://www.goldpreislive.com/en/articles/silver-industrial-demand.html</loc>
     <lastmod>2026-01-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -229,28 +229,28 @@
 
   <!-- Static Pages - German -->
   <url>
-    <loc>https://yoursite.com/de/about.html</loc>
+    <loc>https://www.goldpreislive.com/de/about.html</loc>
     <lastmod>2026-01-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://yoursite.com/de/contact.html</loc>
+    <loc>https://www.goldpreislive.com/de/contact.html</loc>
     <lastmod>2026-01-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://yoursite.com/de/privacy.html</loc>
+    <loc>https://www.goldpreislive.com/de/privacy.html</loc>
     <lastmod>2026-01-24</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   
   <url>
-    <loc>https://yoursite.com/de/terms.html</loc>
+    <loc>https://www.goldpreislive.com/de/terms.html</loc>
     <lastmod>2026-01-24</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
@@ -258,28 +258,28 @@
 
   <!-- Static Pages - Arabic -->
   <url>
-    <loc>https://yoursite.com/ar/about.html</loc>
+    <loc>https://www.goldpreislive.com/ar/about.html</loc>
     <lastmod>2026-01-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://yoursite.com/ar/contact.html</loc>
+    <loc>https://www.goldpreislive.com/ar/contact.html</loc>
     <lastmod>2026-01-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://yoursite.com/ar/privacy.html</loc>
+    <loc>https://www.goldpreislive.com/ar/privacy.html</loc>
     <lastmod>2026-01-24</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   
   <url>
-    <loc>https://yoursite.com/ar/terms.html</loc>
+    <loc>https://www.goldpreislive.com/ar/terms.html</loc>
     <lastmod>2026-01-24</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
@@ -287,28 +287,28 @@
 
   <!-- Static Pages - English -->
   <url>
-    <loc>https://yoursite.com/en/about.html</loc>
+    <loc>https://www.goldpreislive.com/en/about.html</loc>
     <lastmod>2026-01-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://yoursite.com/en/contact.html</loc>
+    <loc>https://www.goldpreislive.com/en/contact.html</loc>
     <lastmod>2026-01-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://yoursite.com/en/privacy.html</loc>
+    <loc>https://www.goldpreislive.com/en/privacy.html</loc>
     <lastmod>2026-01-24</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   
   <url>
-    <loc>https://yoursite.com/en/terms.html</loc>
+    <loc>https://www.goldpreislive.com/en/terms.html</loc>
     <lastmod>2026-01-24</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>

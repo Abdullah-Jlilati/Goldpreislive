@@ -9,7 +9,7 @@ Disallow: /TEST-*.html
 Disallow: /test-*.html
 
 # Sitemap location
-Sitemap: https://yoursite.com/sitemap.xml
+Sitemap: https://www.goldpreislive.com/sitemap.xml
 
 # Crawl-delay (optional, helps prevent server overload)
 # Crawl-delay: 1

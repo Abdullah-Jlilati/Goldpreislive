@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <!-- Root Homepage (Redirects based on language) -->
+  <url>
+    <loc>https://www.goldpreislive.com/</loc>
+    <lastmod>2026-01-28</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.goldpreislive.com/de/index.html"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.goldpreislive.com/ar/index.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.goldpreislive.com/en/index.html"/>
+  </url>
+
+  <!-- This sitemap acts as a sitemap index pointing to the main sitemap -->
+  <!-- Main sitemap with all language pages -->
+  <url>
+    <loc>https://www.goldpreislive.com/sitemap.xml</loc>
+    <lastmod>2026-01-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+</urlset>
