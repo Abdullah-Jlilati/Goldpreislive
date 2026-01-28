@@ -2341,3 +2341,13 @@ input[type='number'],
   }
 }
 
+
+/* ----------------------------------------
+   FIX KARAT GRID ON MOBILE (Force 1 Column)
+   ---------------------------------------- */
+@media (max-width: 600px) {
+  .karat-grid-boxes {
+    grid-template-columns: 1fr !important;
+  }
+}
+
