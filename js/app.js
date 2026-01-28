@@ -49,14 +49,12 @@ const App = {
   },
 
   /**
-   * Initialize theme from localStorage or system preference
+   * Initialize theme from localStorage or default to dark mode
    */
   initTheme() {
     const savedTheme = localStorage.getItem("goldpreis-theme");
-    const systemDark = window.matchMedia(
-      "(prefers-color-scheme: dark)",
-    ).matches;
-    const theme = savedTheme || (systemDark ? "dark" : "light");
+    // Default to dark mode if no saved preference
+    const theme = savedTheme || "dark";
 
     document.documentElement.setAttribute("data-theme", theme);
     this.updateThemeIcon(theme);

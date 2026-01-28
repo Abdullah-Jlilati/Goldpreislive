@@ -170,63 +170,64 @@ const I18n = {
     const filename = currentPath.split('/').pop() || 'index.html';
     const nameNoExt = decodeURIComponent(filename).replace('.html', '');
     
-    // Mapping definitions
-    // Key: German filename (no ext)
-    // Value: { ar: 'Arabic', en: 'English' }
+    // Comprehensive mapping for all languages
     const urlMap = {
-        'index': { ar: 'index', en: 'index' },
-        'goldpreis': { ar: 'gold-price', en: 'gold-price' },
-        'gold-price': { ar: 'gold-price', en: 'gold-price' },
-        'silberpreis': { ar: 'silver-price', en: 'silver-price' },
-        'silver-price': { ar: 'silver-price', en: 'silver-price' },
-        'rechner': { ar: 'calculator', en: 'calculator' },
-        'calculator': { ar: 'calculator', en: 'calculator' },
-        'nachrichten': { ar: 'news', en: 'news' },
-        'news': { ar: 'news', en: 'news' },
-        'blog': { ar: 'blog', en: 'blog' },
-        'ueber-uns': { ar: 'about', en: 'about' },
-        'about': { ar: 'about', en: 'about' },
-        'kontakt': { ar: 'contact', en: 'contact' },
-        'contact': { ar: 'contact', en: 'contact' },
-        'datenschutz': { ar: 'privacy', en: 'privacy' },
-        'privacy': { ar: 'privacy', en: 'privacy' },
-        'agb': { ar: 'terms', en: 'terms' },
-        'terms': { ar: 'terms', en: 'terms' }
+        // Base pages
+        'index': { de: 'index', ar: 'index', en: 'index' },
+        
+        // Gold Price
+        'goldpreis': { de: 'goldpreis', ar: 'gold-price', en: 'gold-price' },
+        'gold-price': { de: 'goldpreis', ar: 'gold-price', en: 'gold-price' },
+        
+        // Silver Price
+        'silberpreis': { de: 'silberpreis', ar: 'silver-price', en: 'silver-price' },
+        'silver-price': { de: 'silberpreis', ar: 'silver-price', en: 'silver-price' },
+        
+        // Calculator
+        'rechner': { de: 'rechner', ar: 'calculator', en: 'calculator' },
+        'calculator': { de: 'rechner', ar: 'calculator', en: 'calculator' },
+        
+        // News
+        'nachrichten': { de: 'news', ar: 'news', en: 'news' },
+        'news': { de: 'news', ar: 'news', en: 'news' },
+        
+        // Blog
+        'blog': { de: 'blog', ar: 'blog', en: 'blog' },
+        
+        // About
+        'ueber-uns': { de: 'about', ar: 'about', en: 'about' },
+        'about': { de: 'about', ar: 'about', en: 'about' },
+        
+        // Contact
+        'kontakt': { de: 'contact', ar: 'contact', en: 'contact' },
+        'contact': { de: 'contact', ar: 'contact', en: 'contact' },
+        
+        // Privacy
+        'datenschutz': { de: 'privacy', ar: 'privacy', en: 'privacy' },
+        'privacy': { de: 'privacy', ar: 'privacy', en: 'privacy' },
+        
+        // Terms
+        'agb': { de: 'terms', ar: 'terms', en: 'terms' },
+        'terms': { de: 'terms', ar: 'terms', en: 'terms' }
     };
     
-    // Find base filename in any language
-    let baseFile = 'index';
-    for (const [key, values] of Object.entries(urlMap)) {
-        if (nameNoExt === key || Object.values(values).includes(nameNoExt)) {
-            baseFile = key;
-            break;
-        }
-    }
+    let targetFilename = 'index.html';
     
-    const targetFilename = (urlMap[baseFile][targetLang] || baseFile) + '.html';
-    
-    // Construct new path
-    let newPath = '';
-    
-    // Determine target folder
-    const targetFolder = `/${targetLang}/`;
-    
-    if (currentPath.includes('/de/')) {
-        newPath = currentPath.replace('/de/', targetFolder);
-    } else if (currentPath.includes('/ar/')) {
-        newPath = currentPath.replace('/ar/', targetFolder);
-    } else if (currentPath.includes('/en/')) {
-        newPath = currentPath.replace('/en/', targetFolder);
+    // Direct lookup
+    if (urlMap[nameNoExt] && urlMap[nameNoExt][targetLang]) {
+        targetFilename = urlMap[nameNoExt][targetLang] + '.html';
     } else {
-        newPath = `../${targetLang}/${targetFilename}`;
+        // Default fallback if not found
+        console.warn(`Translation mapping not found for: ${nameNoExt}, defaulting to index`);
+        targetFilename = 'index.html';
     }
     
-    // Apply filename change
-    newPath = newPath.substring(0, newPath.lastIndexOf('/') + 1) + targetFilename;
-
-    if (currentPath !== newPath) {
-        window.location.href = newPath;
-    }
+    // Always use relative path "../{lang}/{file}" which works reliably
+    // for sibling directories structure (ar/, de/, en/ are siblings)
+    const newPath = `../${targetLang}/${targetFilename}`;
+    
+    console.log(`Redirecting to: ${newPath}`);
+    window.location.href = newPath;
   },
   
   /**

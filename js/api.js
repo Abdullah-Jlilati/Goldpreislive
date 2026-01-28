@@ -197,12 +197,9 @@ const GoldAPI = {
   },
   
   formatPrice(price, currency = "EUR") {
-    return new Intl.NumberFormat("de-DE", {
-      style: "currency",
-      currency: currency,
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2,
-    }).format(price);
+    // Use simple formatting with dot (.) as decimal separator
+    const formatted = price.toFixed(2);
+    return currency === "EUR" ? `${formatted} €` : `${formatted} $`;
   },
 
   getWeightPrices(pricePerGram, currency = 'EUR') {

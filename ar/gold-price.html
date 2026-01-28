@@ -10,8 +10,46 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/styles.css">
   <style>
-        .price-usd-row { margin-top: 5px; font-size: 0.9rem; color: var(--text-muted); display: flex; align-items: center; gap: 5px; }
-        .usd-value { color: var(--text-secondary); font-weight: 600; font-family: var(--font-mono); }
+        /* USD Price - EXACTLY like EUR */
+        .price-value-usd { 
+            font-size: var(--text-4xl);
+            font-weight: 700;
+            background: linear-gradient(135deg, #FFD700, #FFC107, #FFD700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: flex;
+            align-items: baseline;
+            gap: var(--space-2);
+            margin: var(--space-2) 0;
+            position: relative;
+            transition: transform var(--transition-normal);
+        }
+        
+        /* Shimmer effect for USD - EXACTLY like EUR */
+        .price-value-usd::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 255, 255, 0.6),
+                transparent
+            );
+            animation: shimmerGold 3s ease-in-out infinite;
+        }
+        
+        .price-value-usd:hover {
+            transform: scale(1.03);
+        }
+        
+        .price-value-usd:hover::before {
+            animation-play-state: paused;
+        }
         
         .karat-grid-boxes { 
             display: grid; 
@@ -30,15 +68,27 @@
         .karat-box:hover { transform: translateY(-3px); border-color: var(--color-gold); box-shadow: var(--shadow-md); }
         .k-label { font-size: 1.5rem; font-weight: 800; color: var(--color-gold); margin-bottom: 0.25rem; }
         .k-purity { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.05em; }
-        .k-price { font-size: 1.25rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.25rem; }
-        .k-price-usd { font-size: 0.9rem; color: var(--text-secondary); }
+        .k-price { font-size: 1.25rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.25rem; font-family: var(--font-mono); }
+        /* USD Price in karat boxes - SAME as EUR */
+        .k-price-usd { 
+            font-size: 1.25rem !important; 
+            font-weight: 700 !important; 
+            color: var(--text-primary) !important; 
+            font-family: var(--font-mono);
+        }
 
         .comparison-table { width: 100%; border-collapse: collapse; background: var(--bg-card); border-radius: 12px; overflow: hidden; box-shadow: var(--shadow-sm); }
         .comparison-table th { background: var(--bg-secondary); padding: 1rem; text-align: right; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; font-size: 0.85rem; }
         .comparison-table td { padding: 1rem; border-bottom: 1px solid var(--border-color); }
         .comparison-table tr:last-child td { border-bottom: none; }
         .table-price { font-family: var(--font-mono); font-weight: 700; color: var(--color-gold); }
-        .table-usd { font-family: var(--font-mono); color: var(--text-secondary); }
+        /* USD in table - SAME as EUR */
+        .table-usd { 
+            font-family: var(--font-mono); 
+            font-weight: 700; 
+            color: var(--color-gold);
+            font-size: 1rem;
+        }
   </style>
 </head>
 <body>
@@ -91,9 +141,9 @@
                     <span id="goldPrice">--,-- €</span>
                     <span class="price-unit">/ جرام</span>
                 </div>
-                <div class="price-usd-row">
-                    <span class="usd-label">بالدولار:</span>
-                    <span id="goldPriceUsd" class="usd-value">--,-- $</span>
+                <div class="price-value-usd">
+                    <span id="goldPriceUsd">--,-- $</span>
+                    <span class="price-unit">/ جرام</span>
                 </div>
                 <div class="price-change up" id="goldChange">--%</div>
             </div>
