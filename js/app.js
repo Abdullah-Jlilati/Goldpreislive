@@ -44,8 +44,183 @@ const App = {
 
     // Bind events
     this.bindEvents();
+    
+    // Inject Mobile Nav for all pages
+    this.injectMobileNav();
+    
+    // Inject Mobile Menu (Hamburger) & Drawer
+    this.injectMobileMenu();
 
     console.log("Goldpreis Live - Ready!");
+  },
+  
+  /**
+   * Inject Mobile Bottom Navigation Global
+   */
+  injectMobileNav() {
+    // If nav already exists (e.g. hardcoded in HTML), don't duplicate
+    if (document.querySelector('.mobile-quick-nav')) return;
+
+    const lang = document.documentElement.lang || 'de';
+    
+    // Translations
+    const navText = {
+        de: { home: 'Startseite', gold: 'Gold', silver: 'Silber', calc: 'Rechner' },
+        ar: { home: 'الرئيسية', gold: 'ذهب', silver: 'فضة', calc: 'الحاسبة' },
+        en: { home: 'Home', gold: 'Gold', silver: 'Silver', calc: 'Calc' }
+    }[lang] || { home: 'Home', gold: 'Gold', silver: 'Silver', calc: 'Calc' };
+
+    // Links mapping - files are standardized to English names across all folders
+    const links = { 
+        home: 'index.html', 
+        gold: 'gold-price.html', 
+        silver: 'silver-price.html', 
+        calc: 'calculator.html' 
+    };
+
+    const currentFile = window.location.pathname.split('/').pop() || 'index.html';
+    const isHome = currentFile === 'index.html' || currentFile === '';
+    
+    // Check actives
+    const isActive = (page) => {
+        if (page === 'index.html' && isHome) return 'active';
+        return currentFile.includes(page.replace('.html', '')) ? 'active' : '';
+    };
+
+    const navHTML = `
+      <nav class="mobile-quick-nav">
+        <div class="quick-nav-grid">
+            <a href="${links.home}" class="quick-nav-btn ${isActive(links.home)}">
+                <span class="quick-nav-icon">🏠</span>
+                <span>${navText.home}</span>
+            </a>
+            <a href="${links.gold}" class="quick-nav-btn ${isActive(links.gold)}">
+                <span class="quick-nav-icon">🥇</span>
+                <span>${navText.gold}</span>
+            </a>
+            <a href="${links.silver}" class="quick-nav-btn ${isActive(links.silver)}">
+                <span class="quick-nav-icon">🥈</span>
+                <span>${navText.silver}</span>
+            </a>
+            <a href="${links.calc}" class="quick-nav-btn ${isActive(links.calc)}">
+                <span class="quick-nav-icon">🔢</span>
+                <span>${navText.calc}</span>
+            </a>
+        </div>
+      </nav>
+    `;
+    
+    document.body.insertAdjacentHTML('beforeend', navHTML);
+  },
+
+  /**
+   * Inject Mobile Menu Button (Hamburger) & Side Drawer
+   */
+  injectMobileMenu() {
+    // 0. CLEANUP: Remove hardcoded/incomplete elements from HTML files
+    const existingNav = document.getElementById('mobileNav');
+    if (existingNav) existingNav.remove();
+    
+    const existingOverlay = document.getElementById('mobileOverlay');
+    if (existingOverlay) existingOverlay.remove();
+
+    const existingBtn = document.getElementById('mobileMenuBtn');
+    if (existingBtn) existingBtn.remove(); // Remove old SVG buttons
+
+    // 1. Inject Menu Button (New CSS Hamburger)
+    const headerActions = document.querySelector('.header-actions');
+    if (headerActions) {
+        const btnHTML = `
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        `;
+        headerActions.insertAdjacentHTML('beforeend', btnHTML);
+        console.log('🍔 Mobile Menu Button Injected');
+    }
+
+    // 2. Inject Mobile Nav Drawer
+    const lang = document.documentElement.lang || 'de';
+    
+    // Translations
+    const text = {
+        de: { gold: 'Goldpreis', silver: 'Silberpreis', calc: 'Rechner', news: 'Nachrichten', blog: 'Blog', about: 'Über uns', contact: 'Kontakt' },
+        ar: { gold: 'سعر الذهب', silver: 'سعر الفضة', calc: 'الحاسبة', news: 'الأخبار', blog: 'المدونة', about: 'من نحن', contact: 'اتصل بنا' },
+        en: { gold: 'Gold Price', silver: 'Silver Price', calc: 'Calculator', news: 'News', blog: 'Blog', about: 'About', contact: 'Contact' }
+    }[lang] || { gold: 'Gold', silver: 'Silver', calc: 'Calculator' };
+
+    // Links (Standard English Names)
+    const links = {
+        gold: 'gold-price.html',
+        silver: 'silver-price.html',
+        calc: 'calculator.html',
+        news: 'news.html',
+        blog: 'blog.html',
+        about: 'about.html',
+        contact: 'contact.html'
+    };
+
+    const navHTML = `
+        <div class="mobile-overlay" id="mobileOverlay"></div>
+        <nav class="mobile-nav" id="mobileNav">
+            <div class="mobile-nav-links">
+                <a href="index.html" class="mobile-nav-link">🏠 ${lang === 'ar' ? 'الرئيسية' : (lang === 'de' ? 'Startseite' : 'Home')}</a>
+                <a href="${links.gold}" class="mobile-nav-link">${text.gold}</a>
+                <a href="${links.silver}" class="mobile-nav-link">${text.silver}</a>
+                <a href="${links.calc}" class="mobile-nav-link">${text.calc}</a>
+                <hr style="border-color: var(--border-color); width: 100%; margin: 5px 0;">
+                <a href="${links.news}" class="mobile-nav-link">${text.news}</a>
+                <a href="${links.blog}" class="mobile-nav-link">${text.blog}</a>
+                <a href="${links.about}" class="mobile-nav-link">${text.about}</a>
+                <a href="${links.contact}" class="mobile-nav-link">${text.contact}</a>
+            </div>
+        </nav>
+    `;
+    document.body.insertAdjacentHTML('beforeend', navHTML);
+    console.log('📂 Mobile Drawer Injected');
+    
+    // 3. Re-bind Events (Toggle Logic)
+    this.bindMobileMenuEvents();
+  },
+
+  bindMobileMenuEvents() {
+    const btn = document.getElementById('mobileMenuBtn');
+    const nav = document.getElementById('mobileNav');
+    const overlay = document.getElementById('mobileOverlay');
+
+    if (btn && nav) {
+        // Remove old listeners to avoid duplicates (clone node hack)
+        const newBtn = btn.cloneNode(true);
+        btn.parentNode.replaceChild(newBtn, btn);
+        
+        const toggleMenu = (e) => {
+             e.preventDefault();
+             e.stopPropagation();
+             const isOpen = nav.classList.contains('open');
+             if(isOpen) {
+                 nav.classList.remove('open');
+                 if(overlay) overlay.classList.remove('visible');
+                 newBtn.setAttribute('aria-expanded', 'false');
+             } else {
+                 nav.classList.add('open');
+                 if(overlay) overlay.classList.add('visible');
+                 newBtn.setAttribute('aria-expanded', 'true');
+             }
+        };
+
+        newBtn.addEventListener('click', toggleMenu);
+        
+        // Close on overlay click
+        if (overlay) {
+            overlay.addEventListener('click', () => {
+                nav.classList.remove('open');
+                overlay.classList.remove('visible');
+                newBtn.setAttribute('aria-expanded', 'false');
+            });
+        }
+    }
   },
 
   /**

@@ -52,9 +52,6 @@ const Calculator = {
     // NEW: Multi-Karat Gold Calculator State
     multiKaratItems: [],
     
-    // NEW: Multi-Currency Calculator State
-    multiCurrencyItems: [],
-    
     init() {
         this.render();
         this.bindEvents();
@@ -74,18 +71,12 @@ const Calculator = {
         // 1. Update/Merge external rates
         if (rates && Object.keys(rates).length > 0) {
             this.rates = rates;
-            console.log('💱 Calculator: Currency rates updated from API');
-        } else if (!this.rates) {
-            // First run without API? Use fallbacks.
-            // (this.rates is initialized with defaults above so this block might not run, but safe to keep)
         }
 
         // 2. FORCE Consistency: Sync EUR rate with Gold Price's EUR/USD rate.
-        // The Gold Price is in EUR. The app tracks EUR/USD.
-        // Calculator converts input -> USD -> Target.
-        // Rate['EUR'] must imply: 1 USD = X EUR.  X = 1 / eurUsdRate.
-        // Example: 1 EUR = 1.08 USD. 1 USD = 0.9259 EUR.
-        if (this.eurUsdRate) {
+        // ONLY if we don't have external rates (fallback mode).
+        // If we have API rates, trust them over the implied gold rate.
+        if (this.eurUsdRate && (!rates || Object.keys(rates).length === 0)) {
             this.rates['EUR'] = 1.0 / this.eurUsdRate;
             this.rates['USD'] = 1.0;
         }
@@ -117,8 +108,7 @@ const Calculator = {
                     gold: 'Gold Rechner', 
                     silver: 'Silber Rechner', 
                     currency: 'Währungsrechner',
-                    multiKarat: 'Multi-Karat Gold',
-                    multiCurrency: 'Multi-Währung'
+                    multiKarat: 'Multi-Karat Gold'
                 },
                 labels: { 
                     weight: 'Gewicht (Gramm)', 
@@ -158,8 +148,7 @@ const Calculator = {
                     gold: 'حاسبة الذهب', 
                     silver: 'حاسبة الفضة', 
                     currency: 'محول العملات',
-                    multiKarat: 'ذهب متعدد العيارات',
-                    multiCurrency: 'عملات متعددة'
+                    multiKarat: 'ذهب متعدد العيارات'
                 },
                 labels: { 
                     weight: 'الوزن (جرام)', 
@@ -199,8 +188,7 @@ const Calculator = {
                     gold: 'Gold Calc', 
                     silver: 'Silver Calc', 
                     currency: 'Currency Conv',
-                    multiKarat: 'Multi-Karat Gold',
-                    multiCurrency: 'Multi-Currency'
+                    multiKarat: 'Multi-Karat Gold'
                 },
                 labels: { 
                     weight: 'Weight (grams)', 
@@ -249,14 +237,12 @@ const Calculator = {
                     <button class="c-tab ${this.activeTab === 'silver' ? 'active' : ''}" data-tab="silver">🥈 ${safeT(t.tabs?.silver)}</button>
                     <button class="c-tab ${this.activeTab === 'multiKarat' ? 'active' : ''}" data-tab="multiKarat">💎 ${safeT(t.tabs?.multiKarat)}</button>
                     <button class="c-tab ${this.activeTab === 'currency' ? 'active' : ''}" data-tab="currency">💱 ${safeT(t.tabs?.currency)}</button>
-                    <button class="c-tab ${this.activeTab === 'multiCurrency' ? 'active' : ''}" data-tab="multiCurrency">💰 ${safeT(t.tabs?.multiCurrency)}</button>
                 </div>
                 <div class="calc-body">
                     ${this.activeTab === 'gold' ? this.getGoldTemplate(t) : ''}
                     ${this.activeTab === 'silver' ? this.getSilverTemplate(t) : ''}
                     ${this.activeTab === 'multiKarat' ? this.getMultiKaratTemplate(t) : ''}
                     ${this.activeTab === 'currency' ? this.getCurrencyTemplate(t) : ''}
-                    ${this.activeTab === 'multiCurrency' ? this.getMultiCurrencyTemplate(t) : ''}
                 </div>
             </div>
             ${this.getStyles()}
@@ -289,7 +275,14 @@ const Calculator = {
         return `
             <div class="calc-input-group">
                 <label>${t.labels.weight}</label>
-                <input type="number" id="inp-gold-weight" value="${this.goldWeight !== null ? this.goldWeight : ''}" placeholder="0.00" step="0.1" class="c-input">
+                <input type="number" 
+                       lang="en" 
+                       dir="ltr" 
+                       id="inp-gold-weight" 
+                       value="${this.goldWeight !== null ? this.goldWeight : ''}" 
+                       placeholder="0" 
+                       step="1" 
+                       class="c-input">
             </div>
             <div class="calc-input-group">
                 <label>${t.labels.purity}</label>
@@ -318,7 +311,14 @@ const Calculator = {
         return `
             <div class="calc-input-group">
                 <label>${t.labels.weight}</label>
-                <input type="number" id="inp-silver-weight" value="${this.silverWeight !== null ? this.silverWeight : ''}" placeholder="0" step="1" class="c-input">
+                <input type="number" 
+                       lang="en" 
+                       dir="ltr" 
+                       id="inp-silver-weight" 
+                       value="${this.silverWeight !== null ? this.silverWeight : ''}" 
+                       placeholder="0" 
+                       step="1" 
+                       class="c-input">
             </div>
             <div class="calc-input-group">
                 <label>${t.labels.purity}</label>
@@ -352,7 +352,13 @@ const Calculator = {
             <div class="curr-container">
                 <div class="calc-input-group">
                     <label>${t.labels.amount}</label>
-                    <input type="number" id="inp-curr-amount" value="${this.currAmount !== null ? this.currAmount : ''}" placeholder="100" class="c-input big-input">
+                    <input type="number" 
+                           lang="en" 
+                           dir="ltr" 
+                           id="inp-curr-amount" 
+                           value="${this.currAmount !== null ? this.currAmount : ''}" 
+                           placeholder="100" 
+                           class="c-input big-input">
                 </div>
             
                 <div class="curr-row">
@@ -596,6 +602,8 @@ const Calculator = {
                     ${this.multiKaratItems.map((item, idx) => `
                         <div class="multi-item" data-index="${idx}">
                             <input type="number" 
+                                   lang="en"
+                                   dir="ltr"
                                    class="c-input" 
                                    value="${item.weight > 0 ? item.weight : ''}" 
                                    placeholder="${t.labels.weight}" 
@@ -619,6 +627,12 @@ const Calculator = {
                     ${t.labels.calculate}
                 </button>
                 
+                <!-- Detailed Breakdown Section -->
+                <div id="multi-karat-details" style="display:none; margin-bottom: 20px;">
+                    <h4 style="margin-bottom: 10px; color: var(--text-secondary); font-size: 0.9rem; text-align: center;">${t.labels.result} (Details)</h4>
+                    <div id="multi-karat-details-list" style="background: var(--bg-secondary); border-radius: 8px; overflow: hidden;"></div>
+                </div>
+
                 <div class="calc-result-box">
                     <div class="c-res-label">${t.labels.totalValue}</div>
                     <div class="c-res-main" id="res-multi-karat-eur">€0.00</div>
@@ -628,52 +642,6 @@ const Calculator = {
                 <div class="equivalents-box" id="multi-karat-equivalents" style="display:none;">
                     <div class="c-res-label">${t.labels.equivalentIn}</div>
                     <div id="equiv-list"></div>
-                </div>
-            </div>
-        `;
-    },
-    
-    // NEW: Multi-Currency Template
-    getMultiCurrencyTemplate(t) {
-        const renderCurrOpts = () => Object.entries(this.currencies).map(([code, data]) => 
-            `<option value="${code}">${data.flag} ${code}</option>`
-        ).join('');
-        
-        return `
-            <div class="multi-curr-container">
-                <div id="multi-curr-items">
-                    ${this.multiCurrencyItems.map((item, idx) => `
-                        <div class="multi-item" data-index="${idx}">
-                            <input type="number" 
-                                   class="c-input" 
-                                   value="${item.amount > 0 ? item.amount : ''}" 
-                                   placeholder="${t.labels.amount}" 
-                                   onchange="Calculator.updateMultiCurrItem(${idx}, 'amount', this.value)">
-                            <select class="c-select" 
-                                    onchange="Calculator.updateMultiCurrItem(${idx}, 'currency', this.value)">
-                                ${renderCurrOpts()}
-                            </select>
-                            <button onclick="Calculator.removeMultiCurrItem(${idx})">${t.labels.remove}</button>
-                        </div>
-                    `).join('')}
-                </div>
-                
-                <button class="multi-add-btn" onclick="Calculator.addMultiCurrItem()">
-                    ➕ ${t.labels.addItem}
-                </button>
-                
-                <button class="multi-calc-btn" onclick="Calculator.calcMultiCurrency()">
-                    ${t.labels.calculate}
-                </button>
-                
-                <div class="calc-result-box">
-                    <div class="c-res-label">${t.labels.totalValue}</div>
-                    <div class="c-res-main" id="res-multi-curr-total">---</div>
-                </div>
-                
-                <div class="equivalents-box" id="multi-curr-equivalents" style="display:none;">
-                    <div class="c-res-label">${t.labels.equivalentIn}</div>
-                    <div id="curr-equiv-list"></div>
                 </div>
             </div>
         `;
@@ -705,15 +673,44 @@ const Calculator = {
         let totalValueEur = 0;
         let total24kEquiv = 0;
         
+        const detailsContainer = document.getElementById('multi-karat-details');
+        const detailsList = document.getElementById('multi-karat-details-list');
+        let detailsHTML = '';
+        const t = this.getTranslations();
+
         this.multiKaratItems.forEach(item => {
             if (item.weight > 0) {
                 const purity = this.karatPurity[item.karat] || 1;
                 const valueEur = item.weight * this.goldPricePerGram * purity;
+                const valueUsd = valueEur * this.eurUsdRate;
+                
                 totalValueEur += valueEur;
                 total24kEquiv += item.weight * purity; // Convert to 24k equivalent
+                
+                // Add detail row (e.g. 10g 24k: 785 € / 850 $)
+                detailsHTML += `
+                    <div style="padding: 10px; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <span style="font-weight: bold; color: var(--color-gold);">${item.weight}g</span> 
+                            <span style="color: var(--text-secondary);">x</span> 
+                            <span style="font-weight: bold;">${t.purities[item.karat]}</span>
+                        </div>
+                        <div style="text-align: right;">
+                            <div style="font-weight: bold; font-family: var(--font-mono); direction: ltr;">€${valueEur.toFixed(2)}</div>
+                            <div style="font-weight: bold; font-family: var(--font-mono); direction: ltr;">$${valueUsd.toFixed(2)}</div>
+                        </div>
+                    </div>
+                `;
             }
         });
         
+        if(detailsHTML && detailsContainer && detailsList) {
+            detailsList.innerHTML = detailsHTML;
+            detailsContainer.style.display = 'block';
+        } else if (detailsContainer) {
+            detailsContainer.style.display = 'none';
+        }
+
         const totalValueUsd = totalValueEur * this.eurUsdRate;
         
         // Update results
@@ -725,7 +722,6 @@ const Calculator = {
         const equivList = document.getElementById('equiv-list');
         
         if (equivBox && equivList && total24kEquiv > 0) {
-            const t = this.getTranslations();
             equivBox.style.display = 'block';
             
             const karats = ['24k', '22k', '21k', '18k', '14k'];
@@ -741,73 +737,6 @@ const Calculator = {
             }).join('');
         }
     },
-    
-    // NEW: Multi-Currency Functions
-    addMultiCurrItem() {
-        this.multiCurrencyItems.push({ amount: 0, currency: 'EUR' });
-        this.render();
-    },
-    
-    removeMultiCurrItem(idx) {
-        this.multiCurrencyItems.splice(idx, 1);
-        this.render();
-    },
-    
-    updateMultiCurrItem(idx, field, value) {
-        if (this.multiCurrencyItems[idx]) {
-            this.multiCurrencyItems[idx][field] = field === 'amount' ? parseFloat(value) : value;
-        }
-    },
-    
-    calcMultiCurrency() {
-        if (!this.rates) {
-            alert('Currency rates not loaded yet. Please wait...');
-            return;
-        }
-        
-        let totalInUsd = 0;
-        
-        this.multiCurrencyItems.forEach(item => {
-            if (item.amount > 0) {
-                const rate = this.rates[item.currency] || 1;
-                totalInUsd += item.amount / rate;
-            }
-        });
-        
-        // Calculate EUR equivalent
-        const rateEur = this.rates['EUR'] || 0.93;
-        const totalInEur = totalInUsd * rateEur;
-        
-        // Update main result
-        const resEl = document.getElementById('res-multi-curr-total');
-        if (resEl) {
-            resEl.innerHTML = `
-                <div style="font-size: 1.5rem; margin-bottom: 8px">€${totalInEur.toFixed(2)}</div>
-                <div style="font-size: 1.2rem; color: var(--text-secondary)">$${totalInUsd.toFixed(2)}</div>
-            `;
-        }
-        
-        // Show equivalents in major currencies
-        const equivBox = document.getElementById('multi-curr-equivalents');
-        const equivList = document.getElementById('curr-equiv-list');
-        
-        if (equivBox && equivList && totalInUsd > 0) {
-            const t = this.getTranslations();
-            equivBox.style.display = 'block';
-            
-            const majorCurr = ['SAR', 'AED', 'GBP', 'CHF', 'TRY'];
-            equivList.innerHTML = majorCurr.map(curr => {
-                const rate = this.rates[curr] || 1;
-                const amount = totalInUsd * rate;
-                return `
-                    <div class="equiv-item">
-                        <span class="equiv-label">${this.currencies[curr]?.flag} ${curr}</span>
-                        <span class="equiv-value">${amount.toFixed(2)}</span>
-                    </div>
-                `;
-            }).join('');
-        }
-    }
 };
 
 // Auto-init

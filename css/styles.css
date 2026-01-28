@@ -1904,3 +1904,302 @@ p {
     padding-bottom: 0;
   }
 }
+
+/* ----------------------------------------
+   GLOBAL MOBILE BOTTOM NAV
+   ---------------------------------------- */
+@media (max-width: 768px) {
+  .mobile-quick-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: var(--bg-card);
+    border-top: 1px solid var(--border-color);
+    z-index: 9999;
+    padding-bottom: env(safe-area-inset-bottom);
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
+    display: block !important;
+  }
+
+  .quick-nav-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    height: 65px;
+  }
+
+  .quick-nav-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    font-weight: 500;
+    gap: 5px;
+    transition: all 0.2s;
+  }
+
+  .quick-nav-btn:hover {
+    background-color: var(--bg-secondary);
+  }
+
+  .quick-nav-btn.active {
+    color: var(--color-gold);
+    background: linear-gradient(to top, rgba(212, 175, 55, 0.1), transparent);
+    border-top: 2px solid var(--color-gold);
+  }
+
+  .quick-nav-icon {
+    font-size: 1.4rem;
+    margin-top: 2px;
+  }
+  
+  /* Ensure content isn't hidden behind nav */
+  body {
+      padding-bottom: 80px !important; 
+  }
+  
+  /* Hide footer bottom strip if needed or adjust */
+  .footer-bottom {
+      padding-bottom: 80px;
+  }
+}
+
+@media (min-width: 769px) {
+    .mobile-quick-nav {
+        display: none !important;
+    }
+}
+
+
+/* ----------------------------------------
+   GLOBAL MOBILE MENU & BTN INJECTION
+   ---------------------------------------- */
+@media (max-width: 900px) {
+  /* Force Header Actions layout */
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+
+  /* Mobile Menu Button Style */
+  .mobile-menu-btn {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 21px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 1002;
+  }
+
+  .mobile-menu-btn span {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: var(--text-primary);
+    border-radius: 3px;
+    transition: all 0.3s ease;
+  }
+  
+  /* Hamburger Animation when open */
+  .mobile-menu-btn[aria-expanded='true'] span:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+  }
+  .mobile-menu-btn[aria-expanded='true'] span:nth-child(2) {
+    opacity: 0;
+  }
+  .mobile-menu-btn[aria-expanded='true'] span:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+  }
+
+  /* Mobile Navigation Drawer */
+  .mobile-nav {
+    position: fixed;
+    top: 0;
+    left: 0; /* Changed from right to left for better UX or match expectation */
+    width: 280px; /* Max width */
+    height: 100vh;
+    background: var(--bg-card);
+    box-shadow: 2px 0 20px rgba(0,0,0,0.5);
+    z-index: 1001; /* Below button */
+    transform: translateX(-100%);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+    padding-top: 80px; /* Space for header */
+  }
+
+  .mobile-nav.open {
+    transform: translateX(0);
+  }
+  
+  /* RTL Support for Drawer */
+  [lang='ar'] .mobile-nav {
+      left: auto;
+      right: 0;
+      transform: translateX(100%);
+  }
+  [lang='ar'] .mobile-nav.open {
+      transform: translateX(0);
+  }
+
+  .mobile-nav-links {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    gap: 10px;
+  }
+
+  .mobile-nav-link {
+    font-size: 1.1rem;
+    color: var(--text-primary);
+    text-decoration: none;
+    padding: 12px 16px;
+    border-radius: 8px;
+    transition: background 0.2s;
+    font-weight: 500;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .mobile-nav-link:hover, .mobile-nav-link.active {
+    background: var(--bg-secondary);
+    color: var(--color-gold);
+    border-left: 3px solid var(--color-gold);
+  }
+  
+  /* Overlay */
+  .mobile-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 1000;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+      backdrop-filter: blur(2px);
+  }
+  .mobile-overlay.visible {
+      opacity: 1;
+      pointer-events: auto;
+  }
+}
+
+
+/* ----------------------------------------
+   FORCE LATIN NUMBERS (FIX FOR ARABIC INPUTS)
+   ---------------------------------------- */
+/* Force all numeric inputs and displays to be LTR and Latin font */
+input[type='number'],
+.c-input,
+.c-res-main,
+.c-res-sub,
+.table-price,
+.usd-value,
+.equiv-value,
+.multi-item input {
+    direction: ltr !important;
+    font-family: 'Inter', sans-serif !important; 
+    unicode-bidi: isolate !important;
+    font-variant-numeric: tabular-nums;
+}
+
+/* Price Value Specific Handling */
+.price-value {
+    font-family: 'Inter', sans-serif !important;
+    font-variant-numeric: tabular-nums;
+    unicode-bidi: isolate !important;
+    /* We don't force LTR globally here to avoid alignment jumps in RTL, 
+       but we ensure the content renders as numbers correctly */
+}
+
+/* Ensure specifically for Arabic pages */
+[lang='ar'] input[type='number'],
+[lang='ar'] .c-input {
+    direction: ltr !important;
+    text-align: left; 
+}
+
+/* Fix Price Display Alignment in Arabic 
+   Strategy: Keep container RTL so [Price] is Right and [Unit] is Left.
+   But force the [Price] span itself to be LTR to show English numbers and correct currency symbol placement.
+*/
+[lang='ar'] .price-value,
+[lang='ar'] .price-value-usd {
+    direction: rtl !important; 
+    justify-content: flex-start; /* Start from right */
+    text-align: right;
+    display: flex;
+    gap: 5px;
+    width: 100%;
+}
+
+/* Force the Price Number itself to be LTR English */
+[lang='ar'] .price-value > span:not(.price-unit),
+[lang='ar'] .price-value-usd > span:not(.price-unit), 
+[lang='ar'] .k-price,
+[lang='ar'] .k-price-usd {
+    direction: ltr !important;
+    unicode-bidi: isolate !important;
+    font-family: 'Inter', sans-serif !important;
+}
+
+/* Ensure unit stays Arabic font */
+[lang='ar'] .price-unit {
+    font-family: inherit;
+    direction: rtl;
+}
+
+
+
+/* Restore lost styles from previous edit */
+.multi-item {
+    direction: ltr; 
+}
+.c-select {
+    font-family: 'Inter', sans-serif !important;
+}
+
+
+/* ----------------------------------------
+   SILVER CALCULATOR STYLING
+   ---------------------------------------- */
+.calc-result-box.silver {
+    background: linear-gradient(to right, rgba(192, 192, 192, 0.15), rgba(220, 220, 220, 0.05));
+    border-color: #A0AEC0; /* Cool Grey / Silver */
+    box-shadow: 0 4px 6px rgba(160, 174, 192, 0.1);
+}
+
+.calc-result-box.silver .c-res-label {
+    color: #718096;
+}
+
+.calc-result-box.silver .c-res-main {
+    color: #4A5568 !important; /* Dark Slate default */
+    background: linear-gradient(135deg, #718096, #cbd5e0, #718096);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 0px transparent; /* Remove gold glow */
+}
+
+/* Dark Mode Silver */
+[data-theme='dark'] .calc-result-box.silver {
+    background: linear-gradient(to right, rgba(113, 128, 150, 0.2), rgba(45, 55, 72, 0.2));
+    border-color: #4A5568;
+}
+
+[data-theme='dark'] .calc-result-box.silver .c-res-main {
+    background: linear-gradient(135deg, #E2E8F0, #A0AEC0, #E2E8F0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+

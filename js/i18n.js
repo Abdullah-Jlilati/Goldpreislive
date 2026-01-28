@@ -171,21 +171,26 @@ const I18n = {
     const nameNoExt = decodeURIComponent(filename).replace('.html', '');
     
     // Comprehensive mapping for all languages
+    // Comprehensive mapping for all languages
+    // NOTE: All actual files are named in English (gold-price.html, calculator.html, etc.) even in /de/ folder.
     const urlMap = {
         // Base pages
         'index': { de: 'index', ar: 'index', en: 'index' },
         
         // Gold Price
-        'goldpreis': { de: 'goldpreis', ar: 'gold-price', en: 'gold-price' },
-        'gold-price': { de: 'goldpreis', ar: 'gold-price', en: 'gold-price' },
+        'goldpreis': { de: 'gold-price', ar: 'gold-price', en: 'gold-price' }, // Legacy map
+        'gold-price': { de: 'gold-price', ar: 'gold-price', en: 'gold-price' },
+        'سعر-الذهب': { de: 'gold-price', ar: 'gold-price', en: 'gold-price' },
         
         // Silver Price
-        'silberpreis': { de: 'silberpreis', ar: 'silver-price', en: 'silver-price' },
-        'silver-price': { de: 'silberpreis', ar: 'silver-price', en: 'silver-price' },
+        'silberpreis': { de: 'silver-price', ar: 'silver-price', en: 'silver-price' }, // Legacy map
+        'silver-price': { de: 'silver-price', ar: 'silver-price', en: 'silver-price' },
+        'سعر-الفضة': { de: 'silver-price', ar: 'silver-price', en: 'silver-price' },
         
         // Calculator
-        'rechner': { de: 'rechner', ar: 'calculator', en: 'calculator' },
-        'calculator': { de: 'rechner', ar: 'calculator', en: 'calculator' },
+        'rechner': { de: 'calculator', ar: 'calculator', en: 'calculator' }, // Legacy map
+        'calculator': { de: 'calculator', ar: 'calculator', en: 'calculator' },
+        'الحاسبة': { de: 'calculator', ar: 'calculator', en: 'calculator' },
         
         // News
         'nachrichten': { de: 'news', ar: 'news', en: 'news' },
